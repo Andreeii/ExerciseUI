@@ -1,0 +1,41 @@
+<div class="mat-elevation-z8 tournament-table">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>TournamentId</th>
+      <td mat-cell *matCellDef="let row">{{row.id}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>TournamentName</th>
+      <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+
+    <!-- WinnerName -->
+    <ng-container matColumnDef="winnerName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>WinnerName</th>
+      <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+  <!-- IconColumn -->
+  <ng-container  matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef mat-sort-headerclass="center">Actions</th>
+    <td  mat-cell *matCellDef="let row">
+      <button mat-mini-fab color="accent" (click)="routeToAddServicePage()"><i class="fa fa-eye"></i></button>
+      <button mat-mini-fab color="primary" (click)="routeToAddServicePage()"><i class="fa fa-pencil"></i></button>
+      <button mat-mini-fab color="warn"(click)="routeToAddServicePage()"><i class="fa fa-trash"></i></button>
+
+    </td>
+  </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+      [length]="dataSource?.data.length"
+      [pageIndex]="0"
+      [pageSize]="50"
+      [pageSizeOptions]="[15, 50, 100, 250]">
+  </mat-paginator>
+</div>
