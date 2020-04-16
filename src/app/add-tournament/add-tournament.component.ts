@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { IPlayer } from './model-service/add-torunament.model';
+import {TournamentPlayer} from './model-service/add-tournament.service'
 
-interface Food {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'add-tournament',
@@ -12,15 +10,14 @@ interface Food {
 })
 export class AddTournamentComponent implements OnInit {
 
-  constructor() { }
+  public players =[];
+  constructor(private _players:TournamentPlayer) { }
 
   ngOnInit(): void {
+    this._players.getPlayerList()
+    .subscribe(p =>this.players = p)
   }
 
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
+
 
 }

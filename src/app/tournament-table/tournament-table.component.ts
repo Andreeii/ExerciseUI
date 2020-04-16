@@ -1,35 +1,31 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { TournamentTableDataSource, TournamentTableItem } from './tournament-table-datasource';
+import {  Component, OnInit } from '@angular/core';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router} from '@angular/router';
+import { TournamentTableService } from './model-service/tournamnet-table.service';
+import { ITournament } from './model-service/tournament-table.model';
 
 @Component({
   selector: 'tournament-table',
   templateUrl: './tournament-table.component.html',
   styleUrls: ['./tournament-table.component.css']
 })
-export class TournamentTableComponent implements AfterViewInit, OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<TournamentTableItem>;
-  dataSource: TournamentTableDataSource;
+export class TournamentTableComponent implements  OnInit {
 
-  constructor(private router:Router) {}
+  dataSource: MatTableDataSource<ITournament>;
+  tournamentItemTable:ITournament[];
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name','winnerName','action'];
+  constructor(private router:Router, private torunamentService:TournamentTableService) {}
+
+  displayedColumns = ['id', 'name','creationDate','winnerName','action'];
 
   ngOnInit() {
-    this.dataSource = new TournamentTableDataSource();
+    this.torunamentService.getTournamentList()
+    .subscribe(t => {
+      this.tournamentItemTable = t;
+      this.dataSource = new MatTableDataSource(t);
+    })
   }
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
-  }
   routeToAddServicePage(){
     this.router.navigate(['add-tournament']);
 }
