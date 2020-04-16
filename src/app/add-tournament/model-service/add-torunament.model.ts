@@ -5,6 +5,4 @@ export interface IPlayer{
     Gmail:string;
     RegistrationDate:string;
     Role:string;
-
-
 }
