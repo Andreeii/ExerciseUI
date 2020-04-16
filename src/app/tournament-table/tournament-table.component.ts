@@ -3,6 +3,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router} from '@angular/router';
 import { TournamentTableService } from './model-service/tournamnet-table.service';
 import { ITournament } from './model-service/tournament-table.model';
+import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'tournament-table',
@@ -15,6 +16,7 @@ dataSource: MatTableDataSource<ITournament>;
 tournamentItemTable:ITournament[];
 
 
+@ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
 
 
@@ -27,6 +29,8 @@ tournamentItemTable:ITournament[];
     .subscribe(t => {
       this.tournamentItemTable = t;
       this.dataSource = new MatTableDataSource(t);
+      this.dataSource.paginator = this.paginator;
+
     })
   }
   applyFilter(event: Event) {
