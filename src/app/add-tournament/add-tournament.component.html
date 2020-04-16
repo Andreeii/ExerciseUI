@@ -1,11 +1,11 @@
 
-<form class="example-form">
-    <mat-form-field class="example-full-width">
-      <mat-label>TournamentName</mat-label>
-      <input matInput placeholder="Name" value="FirstTournament">
-    </mat-form-field>
-
-  </form>
+  <div>
+  <mat-form-field >
+    <mat-label>Tournament Name</mat-label>
+    <input matInput placeholder="Tournament Name" [formControl] = "name"required>
+    <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+</div>
   <mat-form-field>
     <mat-label>SelectPlayer</mat-label>
     <mat-select>

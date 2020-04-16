@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IPlayer } from './model-service/add-torunament.model';
 import {TournamentPlayer} from './model-service/add-tournament.service'
+import { FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -18,6 +19,12 @@ export class AddTournamentComponent implements OnInit {
     .subscribe(p =>this.players = p)
   }
 
+  name = new FormControl('', [Validators.required]);
 
+  getErrorMessage() {
+    if (this.name.hasError('required')) {
+      return 'Enter Tournament Name';
+    }
+  }
 
 }
