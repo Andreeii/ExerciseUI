@@ -1,4 +1,9 @@
 <div class="mat-elevation-z8 tournament-table">
+  <mat-form-field>
+    <!-- <mat-label>Filter</mat-label> -->
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search">
+  </mat-form-field>
+
   <table [dataSource] ="dataSource" mat-table class="full-width-table" matSort aria-label="tournamentItemTable" >
     <!-- Id Column -->
     <ng-container matColumnDef="id">
@@ -8,7 +13,7 @@
 
     <!-- CreationDate -->
     <ng-container matColumnDef="creationDate">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>CreationDate</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>StartDate </th>
       <td mat-cell *matCellDef="let tournament">{{tournament.creationDate|date}}</td>
     </ng-container>
 
@@ -41,7 +46,7 @@
   <mat-paginator #paginator
       [length]="dataSource?.data.length"
       [pageIndex]="0"
-      [pageSize]="50"
+      [pageSize]="1"
       [pageSizeOptions]="[15, 50, 100, 250]">
   </mat-paginator>
 </div>

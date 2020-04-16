@@ -1,4 +1,4 @@
-import {  Component, OnInit } from '@angular/core';
+import {  Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router} from '@angular/router';
 import { TournamentTableService } from './model-service/tournamnet-table.service';
@@ -11,8 +11,12 @@ import { ITournament } from './model-service/tournament-table.model';
 })
 export class TournamentTableComponent implements  OnInit {
 
-  dataSource: MatTableDataSource<ITournament>;
-  tournamentItemTable:ITournament[];
+dataSource: MatTableDataSource<ITournament>;
+tournamentItemTable:ITournament[];
+
+
+
+
 
   constructor(private router:Router, private torunamentService:TournamentTableService) {}
 
@@ -24,6 +28,10 @@ export class TournamentTableComponent implements  OnInit {
       this.tournamentItemTable = t;
       this.dataSource = new MatTableDataSource(t);
     })
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   routeToAddServicePage(){

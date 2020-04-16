@@ -11,7 +11,7 @@ const routes: Routes = [
   {path:"add-tournament",component:AddTournamentComponent},
   {path:"settings",component:SettingsComponent},
   {path:"profile",component:ProfileComponent},
-  { path: '**', redirectTo: 'settings', pathMatch: 'full'}
+  { path: '**', redirectTo: 'tournament-table', pathMatch: 'full'}
 
   
 ];

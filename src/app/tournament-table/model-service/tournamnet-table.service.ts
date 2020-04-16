@@ -11,6 +11,6 @@ export class TournamentTableService{
     constructor(private http:HttpClient){}
 
     getTournamentList():Observable<ITournament[]>{
-        return this.http.get<ITournament[]>("http://localhost:53084/tournaments");
+        return this.http.get<ITournament[]>("http://localhost:60907/tournaments");
     }
 }

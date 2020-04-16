@@ -13,4 +13,4 @@ export class TournamentPlayer{
     getPlayerList():Observable<IPlayer[]>{
         return this.http.get<IPlayer[]>("http://localhost:53084/players");
     }
-}
+} 
