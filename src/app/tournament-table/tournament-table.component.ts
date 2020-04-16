@@ -4,6 +4,8 @@ import { Router} from '@angular/router';
 import { TournamentTableService } from './model-service/tournamnet-table.service';
 import { ITournament } from './model-service/tournament-table.model';
 import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+
 
 @Component({
   selector: 'tournament-table',
@@ -17,7 +19,7 @@ tournamentItemTable:ITournament[];
 
 
 @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-
+@ViewChild(MatSort, {static: true}) sort: MatSort;
 
 
   constructor(private router:Router, private torunamentService:TournamentTableService) {}
@@ -30,6 +32,7 @@ tournamentItemTable:ITournament[];
       this.tournamentItemTable = t;
       this.dataSource = new MatTableDataSource(t);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
 
     })
   }
