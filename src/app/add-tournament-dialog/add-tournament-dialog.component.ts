@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { TournamentPlayer } from 'src/app/add-tournament/model-service/add-tournament.service';
-import { MatDialogRef,MatDialogConfig } from '@angular/material/dialog';
-import { ITournament } from 'src/app/tournament-table/model-service/tournament-table.model';
+import { TournamentPlayer } from 'src/app/services/player.service';
+import { MatDialogRef } from '@angular/material/dialog';
+import { ITournament } from 'src/app/models/tournament-table.model';
 import { Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 

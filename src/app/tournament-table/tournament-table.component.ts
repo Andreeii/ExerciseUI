@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { TournamentTableService } from './model-service/tournamnet-table.service';
-import { ITournament } from './model-service/tournament-table.model';
+import { TournamentTableService } from '../services/tournamnet-table.service';
+import { ITournament } from '../models/tournament-table.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { DataService } from '../shared/services/data.service';
-import { AddTournamentDialogComponent } from '../main-nav/add-tournament-dialog/add-tournament-dialog.component';
+import { DataService } from '../services/shared/data.service';
+import { AddTournamentDialogComponent } from '../add-tournament-dialog/add-tournament-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
 

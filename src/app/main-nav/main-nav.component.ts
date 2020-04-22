@@ -2,10 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-import { AddTournamentDialogComponent } from './add-tournament-dialog/add-tournament-dialog.component';
-import { DataService } from '../shared/services/data.service';
+
 
 @Component({
   selector: 'main-nav',
