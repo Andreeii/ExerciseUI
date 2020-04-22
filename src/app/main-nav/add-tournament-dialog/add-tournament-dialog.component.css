@@ -1,0 +1,17 @@
+.example-container{
+    display: flex;
+    flex-direction: column;
+}
+.example-container>*{
+    width: 120%;
+}
+
+.drop-down-style{
+    width: 80%;
+    
+}
+
+.save-cancel{
+    position: absolute;
+    top: 600px;
+}

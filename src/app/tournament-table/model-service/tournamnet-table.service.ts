@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ITournament } from './tournament-table.model';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn:'root'
@@ -10,7 +11,9 @@ import { Observable } from 'rxjs';
 export class TournamentTableService{
     constructor(private http:HttpClient){}
 
+    baseUrl = environment.apiUrl;
+
     getTournamentList():Observable<ITournament[]>{
-        return this.http.get<ITournament[]>("http://localhost:60907/tournaments");
+        return this.http.get<ITournament[]>(this.baseUrl+'api/tournament');
     }
 }

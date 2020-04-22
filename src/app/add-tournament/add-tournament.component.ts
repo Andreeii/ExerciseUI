@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IPlayer } from './model-service/add-torunament.model';
-import {TournamentPlayer} from './model-service/add-tournament.service'
-import { FormControl, Validators } from '@angular/forms';
+import { DataService } from '../shared/services/data.service';
+
 
 
 @Component({
@@ -9,22 +8,20 @@ import { FormControl, Validators } from '@angular/forms';
   templateUrl: './add-tournament.component.html',
   styleUrls: ['./add-tournament.component.css']
 })
+
 export class AddTournamentComponent implements OnInit {
 
-  public players =[];
-  constructor(private _players:TournamentPlayer) { }
-
-  ngOnInit(): void {
-    this._players.getPlayerList()
-    .subscribe(p =>this.players = p)
+  dataSource=[];
+  constructor(private dataService:DataService){}
+  ngOnInit() {
+    console.log('add-tournament');
+    this.dataSource = this.dataService.getData();
+    console.log(this.dataSource);
+    console.log(this.dataService.getData());
+    
   }
 
-  name = new FormControl('', [Validators.required]);
-
-  getErrorMessage() {
-    if (this.name.hasError('required')) {
-      return 'Enter Tournament Name';
-    }
-  }
 
 }
+
+

@@ -5,10 +5,16 @@
 .tournament-table{
 
   width:90%;
-  margin:20px auto ;
+  margin:15px auto ;
 }
 
 .mat-form-field {
   font-size: 14px;
-  width: 100%;
+  width: 20%;
+}
+
+.mat-raised-button{
+  position: absolute;
+  right: 100px;
+  top: 120px;
 }

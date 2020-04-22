@@ -1,14 +1,20 @@
+<h1 class="center">Tournament Table</h1>
+
+
 <div class="mat-elevation-z8 tournament-table">
+
   <mat-form-field>
     <mat-label>Search</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Search">
   </mat-form-field>
 
-  <table [dataSource] ="dataSource" mat-table class="full-width-table" matSort  >
+  <button mat-raised-button color="accent" (click)="openAddTournamentDialog()">NewTournament</button>
+
+  <table [dataSource]="dataSource" mat-table class="full-width-table" matSort>
     <!-- Id Column -->
-    <ng-container matColumnDef="id">
+    <ng-container matColumnDef="id" class="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>TournamentId</th>
-      <td mat-cell *matCellDef="let tournament">{{tournament.id}}</td>
+      <td class="id" mat-cell *matCellDef="let tournament">{{tournament.tournamentId}}</td>
     </ng-container>
 
     <!-- CreationDate -->
@@ -19,33 +25,30 @@
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef >TournamentName</th>
+      <th mat-header-cell *matHeaderCellDef>TournamentName</th>
       <td mat-cell *matCellDef="let tournament">{{tournament.name}}</td>
     </ng-container>
 
     <!-- WinnerName -->
     <ng-container matColumnDef="winnerName">
-      <th mat-header-cell *matHeaderCellDef >WinnerName</th>
+      <th mat-header-cell *matHeaderCellDef>WinnerName</th>
       <td mat-cell *matCellDef="let tournament">{{tournament.name}}</td>
     </ng-container>
-  <!-- IconColumn -->
-  <ng-container  matColumnDef="action">
-    <th mat-header-cell *matHeaderCellDef class="center">Actions</th>
-    <td  mat-cell *matCellDef="let row">
-      <button mat-mini-fab color="accent" (click)="routeToAddServicePage()"><i class="fa fa-eye"></i></button>
-      <button mat-mini-fab color="primary" (click)="routeToAddServicePage()"><i class="fa fa-pencil"></i></button>
-      <button mat-mini-fab color="warn"(click)="routeToAddServicePage()"><i class="fa fa-trash"></i></button>
-    </td>
-  </ng-container>
+    <!-- IconColumn -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-mini-fab color="accent" (click)="routeToAddTournamentPage()"><i class="fa fa-eye"></i></button>
+        <button mat-mini-fab color="primary" (click)="routeToAddTournamentPage()"><i class="fa fa-pencil"></i></button>
+        <button mat-mini-fab color="warn"><i class="fa fa-trash"></i></button>
+      </td>
+    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator #paginator
-      [length]="dataSource?.data.length"
-      [pageIndex]="0"
-      [pageSize]="50"
-      [pageSizeOptions]="[1, 50, 100, 250]">
+  <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" [pageSize]="50"
+    [pageSizeOptions]="[1, 50, 100, 250]">
   </mat-paginator>
 </div>

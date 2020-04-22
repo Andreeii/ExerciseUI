@@ -1,3 +1,4 @@
+
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav mat-elevation-z3" 
               fixedInViewport = "false"
@@ -6,7 +7,7 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Profile</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item  routerLink = "profile"><i class="fa fa-home"></i>Home</a>
+      <a mat-list-item  routerLink = "profile"><i class="fa fa-user"></i>Profile</a>
       <a mat-list-item  routerLink = "tournament-table" ><i class="fa fa-list"></i>AllTournaments</a>
       <a mat-list-item  routerLink = "my-achievements"><i class="fa fa-trophy"></i>MyAchievments</a>
       <a mat-list-item routerLink ="settings"><i class="fa fa-cog"></i>Settings</a>
@@ -23,8 +24,6 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span >TournamentBoard</span>
-      <span class="spacer"></span>
-      <button mat-raised-button color="accent" (click)="routeToAddServicePage()">NewTournament</button>
     </mat-toolbar>
         <!-- Add Content Here -->
         <router-outlet></router-outlet>

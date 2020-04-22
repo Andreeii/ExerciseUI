@@ -1,22 +1,7 @@
 
-  <div>
-  <mat-form-field >
-    <mat-label>Tournament Name</mat-label>
-    <input matInput placeholder="Tournament Name" [formControl] = "name"required>
-    <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
-  </mat-form-field>
-</div>
-  <mat-form-field>
-    <mat-label>SelectPlayer</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let player of players" [value]="player.value">
-        {{player.userName}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
 
-  <button class = "spacer" mat-raised-button color="accent" >AddPlayer</button>
 
+<p >TournamentTitle</p>
 
 
   <div class="grid-container">
@@ -36,8 +21,8 @@
     <div class="grid-item"><mat-checkbox class="example-margin" >Point</mat-checkbox></div>
     <div class="grid-item"><mat-checkbox class="example-margin" >Point</mat-checkbox></div>
     <div class="grid-item"></div>
-
   </div>
 
 
-  <button class = "spacer" mat-raised-button color="accent" >SaveTournament</button>
+  <button  mat-raised-button color="primary" >Save</button>
+  <button  mat-raised-button color="warn" >Cancel</button>

@@ -1,5 +1,5 @@
 export interface ITournament{
-    Id:number;
+    TournamentId:number;
     Name:string;
     CreationDate:number;
 }

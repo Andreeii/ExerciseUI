@@ -25,6 +25,9 @@ import { MatDialogModule} from '@angular/material/dialog';
 import { MatSelectModule} from '@angular/material/select';
 import { MatCheckboxModule} from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatGridListModule} from '@angular/material/grid-list';
+import { AddTournamentDialogComponent } from './main-nav/add-tournament-dialog/add-tournament-dialog.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 
@@ -36,7 +39,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MyAchievementsComponent,
     AddTournamentComponent,
     SettingsComponent,
-    ProfileComponent   
+    ProfileComponent,
+    AddTournamentDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,12 +56,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatGridListModule,
     HttpClientModule,
     MatDialogModule,
     MatSelectModule,
     MatCheckboxModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

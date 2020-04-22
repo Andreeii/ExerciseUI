@@ -13,3 +13,6 @@
     font-size: 30px;
   }
 
+.mat-grid.tile{
+  background-color: lightblue;
+}

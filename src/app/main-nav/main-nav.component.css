@@ -10,3 +10,12 @@
   position: relative;
   flex:1 1 auto;
 }
+
+.exemple-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.exemple-container>*{
+  width: 100%;
+}

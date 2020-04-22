@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'profile',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
+  name = new FormControl('', [Validators.required]);
 
   ngOnInit(): void {
+  }
+
+  getErrorMessage() {
+    if (this.name.hasError('required')) {
+      return 'Required';
+    }
+  }
+
+  cancel(){
+      this.router.navigate(['tournament-table']);
   }
 
 }
