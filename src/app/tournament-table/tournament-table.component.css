@@ -16,5 +16,13 @@
 .mat-raised-button{
   position: absolute;
   right: 100px;
-  top: 120px;
+  top: 165px;
+}
+h1{
+  text-align: center;
+  color: darkorchid;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 40px;
+  margin-top:10px;
+  margin-bottom: 50px;
 }

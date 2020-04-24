@@ -11,15 +11,14 @@ import { DataService } from '../services/shared/data.service';
 
 export class AddTournamentComponent implements OnInit {
 
-  dataSource=[];
-  constructor(private dataService:DataService){}
+  dataSource = [];
+  constructor(private dataService: DataService) { }
   ngOnInit() {
-    console.log('add-tournament');
     this.dataSource = this.dataService.getData();
-    console.log(this.dataSource);
-    console.log(this.dataService.getData());
-    
+    console.log("selected items",this.dataSource);
   }
+
+
 
 
 }

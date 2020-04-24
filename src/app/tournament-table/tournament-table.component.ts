@@ -1,11 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
 import { TournamentTableService } from '../services/tournamnet-table.service';
 import { ITournament } from '../models/tournament-table.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { DataService } from '../services/shared/data.service';
 import { AddTournamentDialogComponent } from '../add-tournament-dialog/add-tournament-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -25,7 +23,7 @@ export class TournamentTableComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
 
-  constructor( private dialog: MatDialog,private dataService:DataService,private router: Router, private torunamentService: TournamentTableService) { }
+  constructor( private dialog: MatDialog,private torunamentService: TournamentTableService) { }
 
   displayedColumns = ['id', 'name', 'creationDate', 'winnerName', 'action'];
 
@@ -44,10 +42,6 @@ export class TournamentTableComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  routeToAddTournamentPage() {
-    this.router.navigate(['add-tournament']);
-  }
-
   openAddTournamentDialog(): void {
     let dialogRef = this.dialog.open(AddTournamentDialogComponent, {
       width: '600px',
@@ -55,9 +49,6 @@ export class TournamentTableComponent implements OnInit {
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-      this.dataService.setData(result);
-      this.routeToAddTournamentPage();
     });
 
   }

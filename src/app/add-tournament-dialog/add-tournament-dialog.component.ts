@@ -5,6 +5,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { ITournament } from 'src/app/models/tournament-table.model';
 import { Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { DataService } from '../services/shared/data.service';
 
 @Component({
   selector: 'app-add-tournament-dialog',
@@ -21,7 +22,7 @@ export class AddTournamentDialogComponent implements OnInit {
   selectedItems =[];
   dropdownSettings:IDropdownSettings;
 
-  constructor(private router:Router,private _players:TournamentPlayer ,private dialogRef:MatDialogRef<AddTournamentDialogComponent>) { }
+  constructor(private dataService:DataService,private router:Router,private _players:TournamentPlayer ,private dialogRef:MatDialogRef<AddTournamentDialogComponent>) { }
 
   ngOnInit():void {
     this._players.getPlayerList()
@@ -61,10 +62,14 @@ onDeSelectAll(items: any){
       return 'Enter Tournament Name';
     }
   }
-  
+  routeToAddTournamentPage() {
+    this.router.navigate(['add-tournament']);
+  }
   create(){
-    console.log("items",this.selectedItems);
+    console.log("selected items",this.selectedItems);
     this.dialogRef.close(this.selectedItems);
+    this.dataService.setData(this.selectedItems);
+    this.routeToAddTournamentPage();
   }
   
   dismiss(){
