@@ -1,37 +1,23 @@
-<p>TournamentTitle</p>
+<p>{{tournamentName}}</p>
 
+<div class="table">
+  <div class="row">
+    <div class="cell"></div>
+    <div *ngFor="let player of players" class="cell player">
+      {{player.userName}}
+    </div>
+  </div>
+  <div *ngFor="let row of scoreTable; index as i;" class="row">
+    <div class="cell player">
+      {{players[i].userName}}
+    </div>
 
-<div class="grid-container">
-  <div class="grid-item">VS</div>
-  <div class="grid-item">User1</div>
-  <div class="grid-item">User2</div>
-  <div class="grid-item">User3</div>
-  <div class="grid-item">User1</div>
-  <div class="grid-item"></div>
-  <div class="grid-item">
-    <mat-checkbox class="example-margin">Point</mat-checkbox>
+    <div *ngFor="let cell of row; index as j;" class="cell">
+      <app-player-checkbox [deselectMatchUp$]="deselectMatchUp$" [scoreTable]="scoreTable" [cell]="cell" [row]="i"
+        [column]="j" (matchUpSelected$)="matchUpSelected($event)"></app-player-checkbox>
+    </div>
   </div>
-  <div class="grid-item">
-    <mat-checkbox class="example-margin">Point</mat-checkbox>
-  </div>
-  <div class="grid-item">User2</div>
-  <div class="grid-item">
-    <mat-checkbox class="example-margin">Point</mat-checkbox>
-  </div>
-  <div class="grid-item"></div>
-  <div class="grid-item">
-    <mat-checkbox class="example-margin">Point</mat-checkbox>
-  </div>
-  <div class="grid-item">User3</div>
-  <div class="grid-item">
-    <mat-checkbox class="example-margin">Point</mat-checkbox>
-  </div>
-  <div class="grid-item">
-    <mat-checkbox class="example-margin">Point</mat-checkbox>
-  </div>
-  <div class="grid-item"></div>
 </div>
-
 
 <button mat-raised-button color="primary">Save</button>
 <button mat-raised-button color="warn">Cancel</button>

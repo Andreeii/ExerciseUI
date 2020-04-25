@@ -16,4 +16,9 @@ export class TournamentTableService{
     getTournamentList():Observable<ITournament[]>{
         return this.http.get<ITournament[]>(this.baseUrl+'api/tournament');
     }
+    
+    //  postTournament():Observable<ITournament>{
+    //      return this.http.post<ITournament[]>(this.baseUrl+'api/tournament');
+    //  }
+     
 }

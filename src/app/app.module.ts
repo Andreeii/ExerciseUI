@@ -28,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatGridListModule} from '@angular/material/grid-list';
 import { AddTournamentDialogComponent } from './add-tournament-dialog/add-tournament-dialog.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { PlayerCheckboxComponent } from './add-tournament/player-checkbox/player-checkbox.component';
 
 
 
@@ -41,6 +42,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     SettingsComponent,
     ProfileComponent,
     AddTournamentDialogComponent,
+    PlayerCheckboxComponent
   ],
   imports: [
     BrowserModule,

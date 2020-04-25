@@ -16,8 +16,8 @@ export class AddTournamentDialogComponent implements OnInit {
 
   tournament:ITournament;
   public players =[];
-  name = new FormControl('', [Validators.required]);
-
+  public tournamentName = new FormControl('', [Validators.required]);
+  
   dropdownList = [];
   selectedItems =[];
   dropdownSettings:IDropdownSettings;
@@ -58,7 +58,7 @@ onDeSelectAll(items: any){
 
 
   getErrorMessage() {
-    if (this.name.hasError('required')) {
+    if (this.tournamentName.hasError('required')) {
       return 'Enter Tournament Name';
     }
   }
@@ -69,6 +69,8 @@ onDeSelectAll(items: any){
     console.log("selected items",this.selectedItems);
     this.dialogRef.close(this.selectedItems);
     this.dataService.setData(this.selectedItems);
+    this.dataService.setName(this.tournamentName.value)
+    console.log(this.tournamentName.value);
     this.routeToAddTournamentPage();
   }
   

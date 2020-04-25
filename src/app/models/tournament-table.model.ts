@@ -3,3 +3,7 @@ export interface ITournament{
     Name:string;
     CreationDate:number;
 }
+
+export interface ITournamentDto{
+    Name:string;
+}
