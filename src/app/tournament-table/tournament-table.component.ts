@@ -25,7 +25,7 @@ export class TournamentTableComponent implements OnInit {
 
   constructor( private dialog: MatDialog,private torunamentService: TournamentTableService) { }
 
-  displayedColumns = ['id', 'name', 'creationDate', 'winnerName', 'action'];
+  displayedColumns = ['id', 'tournamentName', 'winnerName', 'Nr.WinnedGames', 'action'];
 
   ngOnInit() {
     this.torunamentService.getTournamentList()

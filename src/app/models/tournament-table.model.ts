@@ -1,7 +1,9 @@
 export interface ITournament{
-    TournamentId:number;
-    Name:string;
-    CreationDate:number;
+    playerId:number;
+    WinnerName:string;
+    numberOfWins:string;
+    tournamentId:number;
+    tournamentName:string;
 }
 
 export interface ITournamentDto{

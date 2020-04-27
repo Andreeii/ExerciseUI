@@ -12,27 +12,27 @@
 
   <table [dataSource]="dataSource" mat-table class="full-width-table" matSort>
     <!-- Id Column -->
-    <ng-container matColumnDef="id" class="id">
+    <ng-container matColumnDef="id" class ="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>TournamentId</th>
       <td class="id" mat-cell *matCellDef="let tournament">{{tournament.tournamentId}}</td>
     </ng-container>
 
-    <!-- CreationDate -->
-    <ng-container matColumnDef="creationDate">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>StartDate </th>
-      <td mat-cell *matCellDef="let tournament">{{tournament.creationDate|date}}</td>
-    </ng-container>
-
     <!-- Name Column -->
-    <ng-container matColumnDef="name">
+    <ng-container matColumnDef="tournamentName">
       <th mat-header-cell *matHeaderCellDef>TournamentName</th>
-      <td mat-cell *matCellDef="let tournament">{{tournament.name}}</td>
+      <td mat-cell *matCellDef="let tournament">{{tournament.tournamentName}}</td>
     </ng-container>
 
     <!-- WinnerName -->
     <ng-container matColumnDef="winnerName">
       <th mat-header-cell *matHeaderCellDef>WinnerName</th>
-      <td mat-cell *matCellDef="let tournament">{{tournament.name}}</td>
+      <td mat-cell *matCellDef="let tournament">{{tournament.winnerName}}</td>
+    </ng-container>
+
+    <!-- WinnerName -->
+    <ng-container matColumnDef="Nr.WinnedGames">
+      <th mat-header-cell *matHeaderCellDef>Nr.OfWinnedGames</th>
+      <td mat-cell *matCellDef="let tournament">{{tournament.numberOfWins}}</td>
     </ng-container>
     <!-- IconColumn -->
     <ng-container matColumnDef="action">
