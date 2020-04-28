@@ -6,6 +6,3 @@ export interface ITournament{
     tournamentName:string;
 }
 
-export interface ITournamentDto{
-    Name:string;
-}

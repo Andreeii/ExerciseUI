@@ -37,7 +37,7 @@ export class PlayerCheckboxComponent implements OnInit, OnDestroy {
   }
 
   matchUpSelected(row: number, column: number, checked: boolean) {
-    this.matchUpSelected$.emit({ row, column, checked});
+    this.matchUpSelected$.emit({ row, column, checked});    
   }
 
 }

@@ -14,10 +14,10 @@
 
     <div *ngFor="let cell of row; index as j;" class="cell">
       <app-player-checkbox [deselectMatchUp$]="deselectMatchUp$" [scoreTable]="scoreTable" [cell]="cell" [row]="i"
-        [column]="j" (matchUpSelected$)="matchUpSelected($event)"></app-player-checkbox>
+        [column]="j" (matchUpSelected$)="matchUpSelected($event,i,j)"></app-player-checkbox>
     </div>
   </div>
 </div>
 
-<button mat-raised-button color="primary">Save</button>
-<button mat-raised-button color="warn">Cancel</button>
+<button mat-raised-button color="primary" (click) = "saveTournament()">Save</button>
+<button mat-raised-button color="warn" (click) = "routeToTournamentTablePage()">Cancel</button>
