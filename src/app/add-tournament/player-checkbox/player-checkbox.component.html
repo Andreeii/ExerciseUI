@@ -1,1 +1,4 @@
-<mat-checkbox *ngIf="cell !== 'x'" [(ngModel)]="checked" (change)="matchUpSelected(row, column, checked)"></mat-checkbox>
+<mat-checkbox *ngIf="cell !== 'x'" [(ngModel)]="checked" (change)="matchUpSelected(row, column, checked)">
+</mat-checkbox>
+
+<!-- <input type="checkbox" *ngIf="cell !== 'x'" [(ngModel)]="cell" (change)="matchUpSelected(row, column, cell)" /> -->

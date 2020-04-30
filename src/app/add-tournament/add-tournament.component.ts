@@ -35,12 +35,12 @@ export class AddTournamentComponent implements OnInit {
   saveTournament(){
     this.postTournamentService.postTournament().subscribe(x =>{
       console.log(x);
-      this.postTournamentService.postGame().subscribe(y =>{
-        console.log(y);
-        this.postTournamentService.postPlayerGame().subscribe(z =>{
-          console.log(z);
-        });
-      });
+      // this.postTournamentService.postGame().subscribe(y =>{
+      //   console.log(y);
+      //   this.postTournamentService.postPlayerGame().subscribe(z =>{
+      //     console.log(z);
+      //   });
+      // });
     });
   }
 

@@ -5,7 +5,9 @@ import { ITournament } from '../models/tournament-table.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { AddTournamentDialogComponent } from '../add-tournament-dialog/add-tournament-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { DataService } from '../services/shared/data.service';
 
 
 @Component({
@@ -23,7 +25,7 @@ export class TournamentTableComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
 
-  constructor( private dialog: MatDialog,private torunamentService: TournamentTableService) { }
+  constructor(private dataService: DataService, private dialog: MatDialog, private torunamentService: TournamentTableService) { }
 
   displayedColumns = ['id', 'tournamentName', 'winnerName', 'Nr.WinnedGames', 'action'];
 
@@ -42,14 +44,21 @@ export class TournamentTableComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+
   openAddTournamentDialog(): void {
     let dialogRef = this.dialog.open(AddTournamentDialogComponent, {
       width: '600px',
-      height:'600px',
+      height: '600px',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
     });
+  }
+
+  openDeleteTournamentDialog(id: number): void {
+    this.dialog.open(DeleteDialogComponent);
+    this.dataService.setData(id);
 
   }
+
 }

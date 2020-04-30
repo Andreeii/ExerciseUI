@@ -5,11 +5,52 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 
-const tournamentDto = {name: "tadsf1" };
-const gameDto = {tournamentId :1};
-const playergameDto = {playerId :1,gameId:2,isWinner:true};
-const playergameDto1 = {playerId :2,gameId:2,isWinner:false};
-const arrDto = [playergameDto,playergameDto1];
+// const tournamentDto = {name: "tadsf1" };
+// const gameDto = {tournamentId :2};
+// const gameDto2 = {tournamentId :2};
+// const arrDto1 = [gameDto,gameDto2];
+
+// const playergameDto = {playerId :1,gameId:2,isWinner:true};
+// const playergameDto1 = {playerId :2,gameId:2,isWinner:false};
+// const arrDto = [playergameDto,playergameDto1];
+
+
+const tournamentDto = {
+    Name: "Name1",
+    Games: [
+        {
+            PlayerGames: [{
+                playerId: 2,
+                IsWinner: true
+            },{
+                playerId: 3,
+                IsWinner: false 
+            }]
+        }
+    ]
+}
+
+const response = {
+    Id:1,
+    Name: "Name1",
+    CreatedDate:'2020-21-21',
+    Games: [
+        {
+            GameId:13,
+            tournamentId:1,
+            PlayerGames: [{
+                GameId:13,
+                playerId: 2,
+                IsWinner: true
+            },{
+                GameId:13,
+                playerId: 3,
+                IsWinner: false 
+            }]
+        }
+    ]
+}
+
 
 @Injectable({
     providedIn: 'root'
@@ -28,11 +69,15 @@ export class TournamentTableService {
         return this.http.post(this.baseUrl + 'api/tournament', tournamentDto);
     }
 
-    postGame() {
-        return this.http.post(this.baseUrl + 'api/game', gameDto);
+    deleteTournament(id: number): Observable<number> {
+        return this.http.delete<number>(this.baseUrl + 'api/tournament/' + id);
     }
-    postPlayerGame() {
-        return this.http.post(this.baseUrl + 'api/playergame', arrDto);
-    }
+
+    // postGame() {
+    //     return this.http.post(this.baseUrl + 'api/game', arrDto1);
+    // }
+    // postPlayerGame() {
+    //     return this.http.post(this.baseUrl + 'api/playergame', arrDto);
+    // }
 
 }

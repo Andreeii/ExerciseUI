@@ -28,6 +28,8 @@ import { MatGridListModule} from '@angular/material/grid-list';
 import { AddTournamentDialogComponent } from './add-tournament-dialog/add-tournament-dialog.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { PlayerCheckboxComponent } from './add-tournament/player-checkbox/player-checkbox.component';
+import { EditTournamentComponent } from './edit-tournament/edit-tournament.component';
+import { DeleteDialogComponent } from './tournament-table/delete-dialog/delete-dialog.component';
 
 
 
@@ -41,7 +43,9 @@ import { PlayerCheckboxComponent } from './add-tournament/player-checkbox/player
     SettingsComponent,
     ProfileComponent,
     AddTournamentDialogComponent,
-    PlayerCheckboxComponent
+    PlayerCheckboxComponent,
+    EditTournamentComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,
