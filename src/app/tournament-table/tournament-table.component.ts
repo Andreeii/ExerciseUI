@@ -8,6 +8,7 @@ import { AddTournamentDialogComponent } from '../add-tournament-dialog/add-tourn
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { DataService } from '../services/shared/data.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -30,13 +31,17 @@ export class TournamentTableComponent implements OnInit {
   displayedColumns = ['id', 'tournamentName', 'winnerName', 'Nr.WinnedGames', 'action'];
 
   ngOnInit() {
+    this.getTournamentList()
+  }
+
+
+  getTournamentList() {
     this.torunamentService.getTournamentList()
       .subscribe(t => {
         this.tournamentItemTable = t;
         this.dataSource = new MatTableDataSource(t);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-
       })
   }
   applyFilter(event: Event) {
@@ -55,10 +60,17 @@ export class TournamentTableComponent implements OnInit {
     });
   }
 
+  deleteTournament(id: number) {
+    this.torunamentService.deleteTournament(id).subscribe(() => {
+      this.getTournamentList();
+    });
+  }
+
+
   openDeleteTournamentDialog(id: number): void {
     this.dialog.open(DeleteDialogComponent);
     this.dataService.setData(id);
-
   }
+
 
 }

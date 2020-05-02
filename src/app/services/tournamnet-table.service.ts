@@ -16,37 +16,19 @@ import { environment } from 'src/environments/environment';
 
 
 const tournamentDto = {
-    Name: "Name1",
-    Games: [
+    Name: "ExampleName",
+    Game: [
         {
-            PlayerGames: [{
-                playerId: 2,
-                IsWinner: true
-            },{
-                playerId: 3,
-                IsWinner: false 
-            }]
-        }
-    ]
-}
-
-const response = {
-    Id:1,
-    Name: "Name1",
-    CreatedDate:'2020-21-21',
-    Games: [
-        {
-            GameId:13,
-            tournamentId:1,
-            PlayerGames: [{
-                GameId:13,
-                playerId: 2,
-                IsWinner: true
-            },{
-                GameId:13,
-                playerId: 3,
-                IsWinner: false 
-            }]
+            PlayerGame: [
+                {
+                    playerId: 1,
+                    IsWinner: true
+                },
+                {
+                    playerId: 2,
+                    IsWinner: false
+                }
+            ]
         }
     ]
 }

@@ -11,11 +11,11 @@ export class PlayerCheckboxComponent implements OnInit, OnDestroy {
   @Input() row: number;
   @Input() column: number;
   @Input() cell: any;
-  @Input() scoreTable: any;
   @Input() deselectMatchUp$: Subject<boolean>;
+  @Input() scoreTable: any;
   @Output() matchUpSelected$: EventEmitter<any> = new EventEmitter();
+  @Output() cellChange = new EventEmitter();
 
-  checked = false;
   private onDestroy$: Subject<null> = new Subject();
 
   constructor() { }
@@ -25,7 +25,8 @@ export class PlayerCheckboxComponent implements OnInit, OnDestroy {
       takeUntil(this.onDestroy$),
       tap((x: any) => {
         if (this.row === x.column && this.column === x.row) {
-          this.checked = false;
+          this.cell = false;
+          this.cellChange.emit(false);
         }
       })
     ).subscribe()
@@ -37,7 +38,8 @@ export class PlayerCheckboxComponent implements OnInit, OnDestroy {
   }
 
   matchUpSelected(row: number, column: number, checked: boolean) {
-    this.matchUpSelected$.emit({ row, column, checked});    
+    this.cellChange.emit(checked);
+    this.matchUpSelected$.emit({ row, column, checked});
   }
 
 }

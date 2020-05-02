@@ -6,7 +6,12 @@ import { TournamentTableService } from '../services/tournamnet-table.service';
 import { Router } from '@angular/router';
 
 
-type TableCell = "x" | boolean;
+type TableCell = {
+  row: number;
+  column: number;
+  checked: boolean | string
+};
+
 
 @Component({
   selector: 'add-tournament',
@@ -18,7 +23,10 @@ export class AddTournamentComponent implements OnInit {
 
   deselectMatchUp$: Subject<boolean> = new Subject();
 
-  constructor(private dataService: DataService ,private postTournamentService:TournamentTableService,private router:Router) { }
+  constructor(private dataService: DataService, private postTournamentService: TournamentTableService, private router: Router) { 
+    this.scoreTable = this.generateInitialTable();
+
+  }
 
   players: IPlayer[] = [];
   scoreTable: TableCell[][];
@@ -32,31 +40,20 @@ export class AddTournamentComponent implements OnInit {
     this.scoreTable = this.generateInitialTable();
   }
 
-  saveTournament(){
-    this.postTournamentService.postTournament().subscribe(x =>{
+  saveTournament() {
+    this.postTournamentService.postTournament().subscribe(x => {
       console.log(x);
-      // this.postTournamentService.postGame().subscribe(y =>{
-      //   console.log(y);
-      //   this.postTournamentService.postPlayerGame().subscribe(z =>{
-      //     console.log(z);
-      //   });
-      // });
     });
   }
 
-  matchUpSelected($event,i,j) {
-    if ($event.checked) {
-      this.deselectMatchUp$.next($event);
+  playerUpdated(cell: TableCell) {
+    if (cell.checked) {
+      this.scoreTable[cell.column][cell.row].checked = false;
     }
-    console.log($event,i,j,this.players[i]);
+    const arrayOfBooleans = this.scoreTable.map(x => x.map(y => y.checked));
+    console.log('arrayOfBooleans', arrayOfBooleans);
+    console.log('this.scoreTable', this.scoreTable);
   }
-
-  // change(newValue, i, j) {
-  //   console.log(newValue, i, j);
-  //   this.scoreTable[i][j] = newValue;
-  //   this.scoreTable[j][i] = !newValue;
-  //   console.log(this.scoreTable);
-  // }
 
   // generating table
   generateInitialTable(): TableCell[][] {
@@ -66,7 +63,12 @@ export class AddTournamentComponent implements OnInit {
       table.push([]);
       for (let j = 0; j < this.players.length; ++j) {
         const value = i === j ? "x" : false;
-        table[i].push(value);
+        const obj: TableCell = {
+          row: i,
+          column: j,
+          checked: i === j ? "x" : false
+        }
+        table[i].push(obj);
       }
     }
     return table;
