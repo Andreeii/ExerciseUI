@@ -4,12 +4,14 @@ import { IPlayer } from '../models/player.model';
 import { Subject } from 'rxjs';
 import { TournamentTableService } from '../services/tournamnet-table.service';
 import { Router } from '@angular/router';
+import { GameDto } from '../models/tournament-table.model';
 
 
 type TableCell = {
   row: number;
   column: number;
-  checked: boolean | string
+  checked: boolean | string;
+  playerIdByRow: number;
 };
 
 
@@ -23,7 +25,7 @@ export class AddTournamentComponent implements OnInit {
 
   deselectMatchUp$: Subject<boolean> = new Subject();
 
-  constructor(private dataService: DataService, private postTournamentService: TournamentTableService, private router: Router) { 
+  constructor(private dataService: DataService, private postTournamentService: TournamentTableService, private router: Router) {
     this.scoreTable = this.generateInitialTable();
 
   }
@@ -34,16 +36,47 @@ export class AddTournamentComponent implements OnInit {
 
 
   ngOnInit() {
-    this.players = this.dataService.getData() || [{ "id": 1, "userName": "a1" }, { "id": 2, "userName": "b1" }, { "id": 3, "userName": "c1" }, { "id": 4, "userName": "d1" }];
+    this.players = this.dataService.getData() || [{ "id": 1, "userName": "a1" }, { "id": 2, "userName": "b1" }, { "id": 3, "userName": "c1" }];
     this.tournamentName = this.dataService.getName();
     console.log(this.players);
     this.scoreTable = this.generateInitialTable();
   }
 
   saveTournament() {
-    this.postTournamentService.postTournament().subscribe(x => {
+    const tournament = this.createTournamentDto();
+    this.postTournamentService.postTournament(tournament).subscribe(x => {
       console.log(x);
     });
+  }
+
+
+  createTournamentDto() {
+    const Games: GameDto[] = [];
+
+    for (let i = 0; i < this.scoreTable.length; i++) {
+      for (let j = i + 1; j < this.scoreTable.length; j++) {
+        const player1 = this.scoreTable[i][j];
+        const player2 = this.scoreTable[j][i];
+        const Game: GameDto = {
+          playerGame: [
+            {
+              playerId: player1.playerIdByRow,
+              isWinner: !!player1.checked
+            },
+            {
+              playerId: player2.playerIdByRow,
+              isWinner: !!player2.checked
+            }
+          ]
+        }
+        Games.push(Game);
+      }
+    }
+    const tournament = {
+      name: this.tournamentName,
+      game: Games
+    }
+    return tournament;
   }
 
   playerUpdated(cell: TableCell) {
@@ -52,7 +85,7 @@ export class AddTournamentComponent implements OnInit {
     }
     const arrayOfBooleans = this.scoreTable.map(x => x.map(y => y.checked));
     console.log('arrayOfBooleans', arrayOfBooleans);
-    console.log('this.scoreTable', this.scoreTable);
+    console.log('this.scoreTable', JSON.stringify(this.scoreTable, undefined, 2));
   }
 
   // generating table
@@ -62,11 +95,11 @@ export class AddTournamentComponent implements OnInit {
     for (let i = 0; i < this.players.length; ++i) {
       table.push([]);
       for (let j = 0; j < this.players.length; ++j) {
-        const value = i === j ? "x" : false;
         const obj: TableCell = {
           row: i,
           column: j,
-          checked: i === j ? "x" : false
+          checked: i === j ? "x" : false,
+          playerIdByRow: this.players[i].id
         }
         table[i].push(obj);
       }
