@@ -6,14 +6,12 @@ import { TournamentTableService } from '../services/tournamnet-table.service';
 import { Router } from '@angular/router';
 import { GameDto } from '../models/tournament-table.model';
 
-
 type TableCell = {
   row: number;
   column: number;
   checked: boolean | string;
   playerIdByRow: number;
 };
-
 
 @Component({
   selector: 'add-tournament',
@@ -47,6 +45,7 @@ export class AddTournamentComponent implements OnInit {
     this.postTournamentService.postTournament(tournament).subscribe(x => {
       console.log(x);
     });
+    this.routeToTournamentTablePage();
   }
 
 
@@ -85,7 +84,7 @@ export class AddTournamentComponent implements OnInit {
     }
     const arrayOfBooleans = this.scoreTable.map(x => x.map(y => y.checked));
     console.log('arrayOfBooleans', arrayOfBooleans);
-    console.log('this.scoreTable', JSON.stringify(this.scoreTable, undefined, 2));
+    console.log('this.scoreTable', /*JSON.stringify(this.scoreTable, undefined, 2)*/this.scoreTable);
   }
 
   // generating table

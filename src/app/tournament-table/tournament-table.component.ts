@@ -5,10 +5,9 @@ import { ITournament } from '../models/tournament-table.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { AddTournamentDialogComponent } from '../add-tournament-dialog/add-tournament-dialog.component';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { DataService } from '../services/shared/data.service';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -34,7 +33,6 @@ export class TournamentTableComponent implements OnInit {
     this.getTournamentList()
   }
 
-
   getTournamentList() {
     this.torunamentService.getTournamentList()
       .subscribe(t => {
@@ -49,7 +47,6 @@ export class TournamentTableComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-
   openAddTournamentDialog(): void {
     let dialogRef = this.dialog.open(AddTournamentDialogComponent, {
       width: '600px',
@@ -59,17 +56,11 @@ export class TournamentTableComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
     });
   }
-
-  deleteTournament(id: number) {
-    this.torunamentService.deleteTournament(id).subscribe(() => {
-      this.getTournamentList();
-    });
-  }
-
-
+  
   openDeleteTournamentDialog(id: number): void {
-    this.dialog.open(DeleteDialogComponent);
     this.dataService.setData(id);
+    let dialogRef = this.dialog.open(DeleteDialogComponent);
+    dialogRef.afterClosed().subscribe(() =>{this.getTournamentList()});
   }
 
 
