@@ -4,7 +4,7 @@ import { TournamentTableService } from '../services/tournamnet-table.service';
 import { ITournament } from '../models/tournament-table.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { AddTournamentDialogComponent } from '../add-tournament-dialog/add-tournament-dialog.component';
+import { AddTournamentDialogComponent } from './add-tournament-dialog/add-tournament-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { DataService } from '../services/shared/data.service';

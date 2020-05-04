@@ -5,7 +5,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { ITournament } from 'src/app/models/tournament-table.model';
 import { Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { DataService } from '../services/shared/data.service';
+import { DataService } from '../../services/shared/data.service';
 
 @Component({
   selector: 'app-add-tournament-dialog',
