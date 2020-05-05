@@ -8,6 +8,7 @@ import { AddTournamentDialogComponent } from './add-tournament-dialog/add-tourna
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { DataService } from '../services/shared/data.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class TournamentTableComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
 
-  constructor(private dataService: DataService, private dialog: MatDialog, private torunamentService: TournamentTableService) { }
+  constructor(private router:Router,private dataService: DataService, private dialog: MatDialog, private torunamentService: TournamentTableService) { }
 
   displayedColumns = ['id', 'tournamentName', 'winnerName', 'Nr.WinnedGames', 'action'];
 
@@ -64,4 +65,13 @@ export class TournamentTableComponent implements OnInit {
   }
 
 
+  editTournament(id:number){
+    this.dataService.setId(id);
+    this.router.navigate(['edit-tournament']);
+    
+  }
+
+  viewTournament(id:number){
+    this.dataService.setData(id);
+  }
 }

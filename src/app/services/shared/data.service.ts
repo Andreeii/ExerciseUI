@@ -8,7 +8,8 @@ export class DataService {
   constructor() { }
 
   private data: any;
-  private name:any;
+  private name: any;
+  private id: number;
 
   setData(data: any) {
     this.data = data;
@@ -18,10 +19,20 @@ export class DataService {
     this.name = name;
   }
 
-  getName(){
+  getName() {
     const temp = this.name;
     this.clearData();
-    return temp ;
+    return temp;
+  }
+
+  setId(id: number) {
+    this.id = id;
+  }
+
+  getId(){
+    const temp = this.id
+    this.clearData();
+    return temp;
   }
   getData() {
     const temp = this.data;

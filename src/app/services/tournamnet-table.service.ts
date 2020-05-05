@@ -5,34 +5,6 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 
-// const tournamentDto = {name: "tadsf1" };
-// const gameDto = {tournamentId :2};
-// const gameDto2 = {tournamentId :2};
-// const arrDto1 = [gameDto,gameDto2];
-
-// const playergameDto = {playerId :1,gameId:2,isWinner:true};
-// const playergameDto1 = {playerId :2,gameId:2,isWinner:false};
-// const arrDto = [playergameDto,playergameDto1];
-
-
-const tournamentDto = {
-    Name: "ExampleName",
-    Game: [
-        {
-            PlayerGame: [
-                {
-                    playerId: 1,
-                    IsWinner: true
-                },
-                {
-                    playerId: 2,
-                    IsWinner: false
-                }
-            ]
-        }
-    ]
-}
-
 
 @Injectable({
     providedIn: 'root'
@@ -55,11 +27,8 @@ export class TournamentTableService {
         return this.http.delete<number>(this.baseUrl + 'api/tournament/' + id);
     }
 
-    // postGame() {
-    //     return this.http.post(this.baseUrl + 'api/game', arrDto1);
-    // }
-    // postPlayerGame() {
-    //     return this.http.post(this.baseUrl + 'api/playergame', arrDto);
-    // }
+    getTournamentById(id:number):Observable<TournamentDto>{
+        return this.http.get<TournamentDto>(this.baseUrl + 'api/tournament/'+ id)
+    }
 
 }

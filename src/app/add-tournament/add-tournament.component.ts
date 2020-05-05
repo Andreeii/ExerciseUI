@@ -48,6 +48,11 @@ export class AddTournamentComponent implements OnInit {
     this.routeToTournamentTablePage();
   }
 
+  editTournament(id: number) {
+    id = this.dataService.getId();
+    this.postTournamentService.getTournamentById(id).subscribe(x =>console.log(x));
+    
+  }
 
   createTournamentDto() {
     const Games: GameDto[] = [];

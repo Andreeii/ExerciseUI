@@ -2,7 +2,6 @@ import { Component, OnInit} from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { TournamentTableService } from 'src/app/services/tournamnet-table.service';
 import { DataService } from 'src/app/services/shared/data.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'delete-dialog',
@@ -13,7 +12,7 @@ import { Router } from '@angular/router';
 export class DeleteDialogComponent implements OnInit {
 
   id: number;
-  constructor(private router:Router,private dataService: DataService, private dialogRef: MatDialogRef<DeleteDialogComponent>, private tournamentService: TournamentTableService) { }
+  constructor(private dataService: DataService, private dialogRef: MatDialogRef<DeleteDialogComponent>, private tournamentService: TournamentTableService) { }
 
   ngOnInit(): void {
   }
@@ -29,7 +28,4 @@ export class DeleteDialogComponent implements OnInit {
     this.dismiss();
   }
   
-  routeToTournamentTablePage() {
-    this.router.navigate(['tournament-table']);
-  }
 }
