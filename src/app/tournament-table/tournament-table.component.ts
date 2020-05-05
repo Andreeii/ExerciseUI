@@ -71,7 +71,4 @@ export class TournamentTableComponent implements OnInit {
     
   }
 
-  viewTournament(id:number){
-    this.dataService.setData(id);
-  }
 }
