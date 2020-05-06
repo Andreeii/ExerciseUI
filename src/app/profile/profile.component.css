@@ -23,3 +23,17 @@ h1 {
   color: darkorchid;
   margin-top: 10px;
 }
+
+.deleteProfile{
+  background-color: red;
+  margin-left: 90%;
+  width: auto;
+}
+
+button{
+  width: 100px;
+  background-color: #CCC;
+}
+.cancel{
+  margin-left: 58%;
+}

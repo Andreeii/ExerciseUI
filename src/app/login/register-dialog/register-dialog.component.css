@@ -1,9 +1,18 @@
-input{
-    width: 100%;
+h1 {
+    text-align: center;
+    color: #008CBA;
+    font-family: 'Signika';
+    font-size: 28px
 }
 
-.example-full-width{
+.example-full-width {
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
+}
+
+button{
+    background-color: #CCC;
+    margin-left: 5%;
+    width: 100px;
 }

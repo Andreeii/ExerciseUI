@@ -6,17 +6,17 @@
   width: 200px;
 }
 
-.spacer{
+.spacer {
   position: relative;
-  flex:1 1 auto;
+  flex: 1 1 auto;
 }
 
-.exemple-container{
+.exemple-container {
   display: flex;
   flex-direction: column;
 }
 
-.exemple-container>*{
+.exemple-container>* {
   width: 100%;
 }
 
@@ -25,9 +25,14 @@
   font-size: 30px;
 } */
 
-img{
+img {
   margin-left: auto;
   margin-top: 10px;
   width: 60px;
   background-color: inherit;
+}
+
+.Logout {
+  margin-left: 10%;
+  background-color: #CCC;
 }
