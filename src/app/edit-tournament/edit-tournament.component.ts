@@ -2,6 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/shared/data.service';
 import { TournamentTableService } from '../services/tournamnet-table.service';
 import { TournamentDto } from '../models/tournament-table.model';
+import { IPlayer } from '../models/player.model';
+
+type TableCell = {
+  row: number;
+  column: number;
+  checked: boolean | string;
+  playerIdByRow: number;
+};
 
 @Component({
   selector: 'edit-tournament',
@@ -10,84 +18,49 @@ import { TournamentDto } from '../models/tournament-table.model';
 })
 export class EditTournamentComponent implements OnInit {
 
-  id:number;
+  id: number;
   tournament: TournamentDto;
-  players: [];
+  players: IPlayer[] = [];
 
-  constructor(private dataService:DataService,private editTournamentService:TournamentTableService) { }
+
+  constructor(private dataService: DataService, private editTournamentService: TournamentTableService) { }
 
   ngOnInit(): void {
     this.id = this.dataService.getId();
     // this.editTournamentService.getTournamentById(this.id).subscribe(x => this.onTour(x));
-    this.editTournamentService.getTournamentById(this.id).subscribe(x =>console.log(x));
+    this.editTournamentService.getTournamentById(this.id).subscribe(x => console.log(x));
   }
 
-//   onTour(tour) {
-//     this.tournament = tour;
-//     const newGameList = this.prepareGameList(this.tournament.game);
-//     const firstRow = newGameList[0];
-//     const firstPlayer = { id: firstRow.playerGame[0].playerId, playerName:firstRow.playerGame[0].playerId }
-//     this.players = []
-//   }
+  // const phoneNumbers = users.reduce((pn, u) => [...pn, ...u.phoneNumbers], []);
 
-//   prepareGameList(games) {
-//     const list = games.slice();
-//     const result = [];
-//     list.reverse();
-//     let counter = 1;
+  // generateInitialTable(): TableCell[][] {
+  //   const table: TableCell[][] = [];
 
-//     while(list.length) {
-//         const removed = list.splice(0, counter);
-//         result.push(removed.reverse());
-//         counter++;
-//     }
+  //   for (let game of this.tournament.game) {
+  //     table.push([]);
+  //       for(let playerGame of game.playerGame){
+  //         const obj: TableCell = {
+  //           row: i,
+  //           column: j,
+  //           checked: i === j ? "x" : false,
+  //           playerIdByRow: this.players[i].id
+  //         }
+  //         table[i].push(obj);
+  //       }
+  //   }
 
-//     return result.reverse();
-// }
-
-// const newGameList = prepareGameList(t.game);
-// const playersCount = newGameList[0].length + 1;
-
-// generateInitialTable() {
-//     const table = [];
-
-//     for (let i = 0; i < playersCount; ++i) {
-//       table.push([]);
-//       for (let j = 0; j < playersCount; ++j) {
-//         const obj = {
-//           row: i,
-//           column: j,
-//           checked: i === j ? "x" : false,
-//           playerIdByRow: 1
-//         }
-//         table[i].push(obj);
-//       }
-//     }
-//     return table;
-//   }
-
-// populateTable(table) {
-//     for (let i = 0; i < playersCount; i++) {
-//         const listForRow = newGameList[i];
-//         for (let j = i + 1; j < playersCount; j++) {
-//                   const game = listForRow[j - i - 1];
-//                   const [playerGame1, playerGame2] = game.playerGame
-//                   const obj = {
-//                       row: i,
-//                       column: j,
-//                       checked: i === j ? "x" : playerGame1.isWinner,
-//                       playerIdByRow: playerGame1.playerId,
-//                     }
-//                 table[i][j] = obj;
-
-//                 const obj2 = {
-//                       row: j,
-//                       column: i,
-//                       checked: i === j ? "x" : playerGame2.isWinner,
-//                       playerIdByRow: playerGame2.playerId,
-//                     }
-//                 table[j][i] = obj2;
-//         }
-//     }
-// }
+  //   for (let i = 0; i < this.tournament.game; ++i) {
+  //     table.push([]);
+  //     for (let j = 0; j < this.players.length; ++j) {
+  //       const obj: TableCell = {
+  //         row: i,
+  //         column: j,
+  //         checked: i === j ? "x" : false,
+  //         playerIdByRow: this.players[i].id
+  //       }
+  //       table[i].push(obj);
+  //     }
+  //   }
+  //   return table;
+  // }
 }

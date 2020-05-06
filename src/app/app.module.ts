@@ -32,6 +32,10 @@ import { EditTournamentComponent } from './edit-tournament/edit-tournament.compo
 import { DeleteDialogComponent } from './tournament-table/delete-dialog/delete-dialog.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterDialogComponent } from './login/register-dialog/register-dialog.component';
+import { AuthGuard } from './guards/auth.guard';
+import { environment } from 'src/environments/environment';
+import { JwtModule } from '@auth0/angular-jwt';
+
 
 
 
@@ -73,9 +77,15 @@ import { RegisterDialogComponent } from './login/register-dialog/register-dialog
     MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('accessToken'),
+        whitelistedDomains: [environment.whitelistedDomainsForSendingToken],
+        blacklistedRoutes: [environment.blacklistedRoutes]
+   }}),
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

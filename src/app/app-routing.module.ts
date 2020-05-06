@@ -15,7 +15,7 @@ const routes: Routes = [
   {
     path: '',
     component: MainNavComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       { path: 'tournament-table', component: TournamentTableComponent },
       { path: "my-achievements", component: MyAchievementsComponent },
