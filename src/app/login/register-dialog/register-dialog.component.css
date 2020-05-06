@@ -1,0 +1,9 @@
+input{
+    width: 100%;
+}
+
+.example-full-width{
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}

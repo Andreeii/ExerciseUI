@@ -20,8 +20,14 @@
   width: 100%;
 }
 
-span{
+/* span{
   font-family: "Times New Roman", Times, serif;
   font-size: 30px;
+} */
 
+img{
+  margin-left: auto;
+  margin-top: 10px;
+  width: 60px;
+  background-color: inherit;
 }

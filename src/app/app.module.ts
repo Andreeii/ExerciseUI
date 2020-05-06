@@ -30,6 +30,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { PlayerCheckboxComponent } from './add-tournament/player-checkbox/player-checkbox.component';
 import { EditTournamentComponent } from './edit-tournament/edit-tournament.component';
 import { DeleteDialogComponent } from './tournament-table/delete-dialog/delete-dialog.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterDialogComponent } from './login/register-dialog/register-dialog.component';
 
 
 
@@ -45,7 +47,10 @@ import { DeleteDialogComponent } from './tournament-table/delete-dialog/delete-d
     AddTournamentDialogComponent,
     PlayerCheckboxComponent,
     EditTournamentComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    LoginComponent,
+    RegisterDialogComponent
+  
   ],
   imports: [
     BrowserModule,

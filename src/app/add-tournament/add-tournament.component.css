@@ -56,9 +56,19 @@ p {
 }
 
 .player {
-  background-color: #FFd800;
+  background-color: #008CBA;
 }
 button{
-  margin-top:10px;
+  margin-top:30px;
   margin-left: 50px;
+}
+
+.save{
+  background-color: #008CBA;
+  width: 100px;
+  margin-left: 20px;
+}
+
+.cancel{
+  width: 100px;
 }

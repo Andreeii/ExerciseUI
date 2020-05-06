@@ -6,15 +6,26 @@ import { AddTournamentComponent } from './add-tournament/add-tournament.componen
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditTournamentComponent } from './edit-tournament/edit-tournament.component';
+import { LoginComponent } from './login/login.component';
+import { MainNavComponent } from './main-nav/main-nav.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: 'tournament-table', component: TournamentTableComponent },
-  { path: "my-achievements", component: MyAchievementsComponent },
-  { path: "add-tournament", component: AddTournamentComponent },
-  { path: "edit-tournament", component:EditTournamentComponent},
-  { path: "settings", component: SettingsComponent },
-  { path: "profile", component: ProfileComponent },
-  { path: '**', redirectTo: 'tournament-table', pathMatch: 'full' }
+  { path: 'login', component: LoginComponent },
+  {
+    path: '',
+    component: MainNavComponent,
+    //canActivate: [AuthGuard],
+    children: [
+      { path: 'tournament-table', component: TournamentTableComponent },
+      { path: "my-achievements", component: MyAchievementsComponent },
+      { path: "add-tournament", component: AddTournamentComponent },
+      { path: "edit-tournament", component:EditTournamentComponent},
+      { path: "settings", component: SettingsComponent },
+      { path: "profile", component: ProfileComponent }
+    ]
+  },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

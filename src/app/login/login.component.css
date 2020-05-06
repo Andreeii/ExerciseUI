@@ -1,0 +1,55 @@
+Html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.container {
+    height: 100%;
+    margin: 0 auto;
+    padding: 0px;
+    position: center;
+    top: 200px;
+}
+
+.grandParentContaniner {
+    display: table;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.parentContainer {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.parentContainer .loginForm {
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    width: 400px;
+    display: table-cell;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+h2{
+color:#008CBA;
+font-family: 'Signika';
+font-size: 28px
+}
+
+img{
+    height: 150px;
+    margin-left: 30%;
+}
+.register{
+    background-color: #008CBA;
+    width: 80px;
+    
+}
+
+.login{
+    width: 80px;
+    margin-left: 60%;
+}
