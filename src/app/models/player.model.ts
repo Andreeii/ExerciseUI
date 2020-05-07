@@ -5,3 +5,11 @@ export interface IPlayer{
     registrationDate?:string;
     role?:string;
 }
+
+export interface PlayerDto{
+    name:string;
+    surname:string;
+    username:string;
+    email:string;
+    password:string;
+}

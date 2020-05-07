@@ -11,8 +11,12 @@ h1 {
     margin-right: 5%;
 }
 
-button{
-    background-color: #CCC;
+
+.save{
     margin-left: 5%;
+    width: 100px;
+}
+
+.cancel{
     width: 100px;
 }

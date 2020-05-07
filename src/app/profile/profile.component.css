@@ -16,17 +16,17 @@
   width: 100%;
 }
 
+
 h1 {
   font-family: "Times New Roman", Times, serif;
   font-size: 40px;
   text-align: center;
-  color: darkorchid;
+  color: #008CBA;
   margin-top: 10px;
 }
 
 .deleteProfile{
-  background-color: red;
-  margin-left: 90%;
+  margin-left: 20px;
   width: auto;
 }
 

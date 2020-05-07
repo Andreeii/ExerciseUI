@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { LoginComponent } from '../login.component';
+import { TournamentPlayer } from 'src/app/services/player.service';
+import { PlayerDto } from 'src/app/models/player.model';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register-dialog',
@@ -9,13 +12,41 @@ import { LoginComponent } from '../login.component';
 })
 export class RegisterDialogComponent implements OnInit {
 
-  constructor(private dialogRef:MatDialogRef<LoginComponent>) { }
+  name = new FormControl('', [Validators.required]);
+  surname = new FormControl('', [Validators.required]);
+  userName = new FormControl('', [Validators.required]);
+  email = new FormControl('', [Validators.required]);
+  password = new FormControl('', [Validators.required]);
+
+  errorMessage: string;
+  constructor(private dialogRef: MatDialogRef<LoginComponent>, private playerService: TournamentPlayer) { }
 
   ngOnInit(): void {
   }
 
-  dismiss(){
+  dismiss() {
     this.dialogRef.close(null);
+  }
+
+  createPlayerDto() {
+    const player: PlayerDto = {
+      name: this.name.value,
+      surname: this.surname.value,
+      username: this.userName.value,
+      email: this.email.value,
+      password: this.password.value
+    }
+    return player;
+  }
+
+  savePlayer() {
+    const player = this.createPlayerDto();
+    this.playerService.postPlayer(player).subscribe(x => {
+      console.log(x);
+    });
+    this.dialogRef.close(null);
+  }
+  getErrorMessage() {
   }
 
 }

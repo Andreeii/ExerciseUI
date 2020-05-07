@@ -2,46 +2,48 @@
 <div>
     <mat-form-field class="example-full-width">
         <mat-label>Name</mat-label>
-        <input matInput placeholder="PlayerName" required>
-        <!-- <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error> -->
+        <input matInput placeholder="PlayerName" [formControl]="name" required>
+        <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 </div>
 
 <div>
     <mat-form-field class="example-full-width">
         <mat-label>Surname</mat-label>
-        <input matInput placeholder="PlayerSurname" required>
-        <!-- <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error> -->
+        <input matInput placeholder="PlayerSurname" [formControl]="surname" required>
+        <mat-error *ngIf="surname.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 </div>
 
 <div>
     <mat-form-field class="example-full-width">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="Email" required>
-        <!-- <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error> -->
+        <input matInput placeholder="Email" [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 </div>
 
 <div>
     <mat-form-field class="example-full-width">
         <mat-label>Username</mat-label>
-        <input matInput placeholder="Username" required>
-        <!-- <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error> -->
+        <input matInput placeholder="Username" [formControl]="userName" required>
+        <mat-error *ngIf="userName.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 </div>
 <div>
     <mat-form-field class="example-full-width">
         <mat-label>Password</mat-label>
-        <input matInput placeholder="Password" required>
-        <!-- <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error> -->
+        <input matInput placeholder="Password" [formControl]="password" required>
+        <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint>Min 5 characters,one upper case and one symbol </mat-hint>
     </mat-form-field>
 </div>
 <mat-dialog-actions>
-    <button mat-button color="primary">
+    <button mat-raised-button color="primary" class="save" (click)="savePlayer()"
+        [disabled]="!userName.valid ||!surname.valid ||!email.valid ||!password.valid||!name.valid">
         <mat-icon>save</mat-icon>Save
     </button>
-    <button mat-button color="warn"(click)="dismiss()">
+    <button mat-raised-button color="warn"class="cancel" (click)="dismiss()">
         <mat-icon>cancel</mat-icon>Cancel
     </button>
 </mat-dialog-actions>

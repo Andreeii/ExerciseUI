@@ -5,7 +5,10 @@
 .sidenav {
   width: 200px;
 }
-
+.toolbar{
+  background-color: #008CBA;
+  color: aliceblue;
+}
 .spacer {
   position: relative;
   flex: 1 1 auto;
@@ -35,4 +38,8 @@ img {
 .Logout {
   margin-left: 10%;
   background-color: #CCC;
+}
+
+.clouds{
+  background-image: url("../../assets/images/clouds.jpg");
 }

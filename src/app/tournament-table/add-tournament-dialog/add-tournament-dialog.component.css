@@ -1,22 +1,31 @@
-.example-container{
+.example-container {
     display: flex;
     flex-direction: column;
 }
-.example-container>*{
+
+.example-container>* {
     width: 120%;
 }
 
-.drop-down-style{
+.drop-down-style {
     width: 80%;
-    
 }
 
-.save-cancel{
+.save-cancel {
     position: absolute;
     top: 600px;
 }
 
-h2{
+h2 {
     color: #008CBA;
 }
 
+.save {
+    width: 100px;
+    top: 350px;
+}
+
+.cancel {
+    width: 100px;
+    top: 350px;
+}

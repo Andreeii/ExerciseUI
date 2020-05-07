@@ -6,15 +6,15 @@
             <img class = "imageSize" src="../../assets/images/tournament-1.png">
             <h2>Login into TournamentBoard App</h2>
   
-            <mat-form-field style="display: block">
+            <mat-form-field style="display: block"appearance ="fill">
               <input matInput type="text" placeholder="User Name" formControlName="userName" />
             </mat-form-field>
   
-            <mat-form-field style="display: block">
+            <mat-form-field style="display: block"appearance ="fill">
               <input matInput type="password" placeholder="Password" formControlName="password" />
             </mat-form-field>
-            <button mat-raised-button class ="register"(click) = "openRegisterDialog()">Register</button>
-            <button mat-raised-button class="login"(click) = "login()">Login</button>
+            <button mat-raised-button color="primary" class ="register"(click) = "openRegisterDialog()">Register</button>
+            <button mat-raised-button color="warn" class="login"(click) = "login()">Login</button>
 
           </div>
         </form>

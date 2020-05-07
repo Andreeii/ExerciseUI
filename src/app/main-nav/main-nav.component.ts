@@ -27,5 +27,4 @@ export class MainNavComponent {
       this.router.navigate(['login']);
     }
 
-
 }
