@@ -5,10 +5,12 @@
 .sidenav {
   width: 200px;
 }
-.toolbar{
+
+.toolbar {
   background-color: #008CBA;
   color: aliceblue;
 }
+
 .spacer {
   position: relative;
   flex: 1 1 auto;
@@ -40,6 +42,7 @@ img {
   background-color: #CCC;
 }
 
-.clouds{
-  background-image: url("../../assets/images/clouds.jpg");
+.clouds {
+  /* background-image: url("../../assets/images/clouds.jpg"); */
 }
+

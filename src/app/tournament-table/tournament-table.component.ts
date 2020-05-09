@@ -26,7 +26,7 @@ export class TournamentTableComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
 
-  constructor(private router:Router,private dataService: DataService, private dialog: MatDialog, private torunamentService: TournamentTableService) { }
+  constructor(private router: Router, private dataService: DataService, private dialog: MatDialog, private torunamentService: TournamentTableService) { }
 
   displayedColumns = ['id', 'tournamentName', 'winnerName', 'Nr.WinnedGames', 'action'];
 
@@ -57,18 +57,26 @@ export class TournamentTableComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
     });
   }
-  
+
   openDeleteTournamentDialog(id: number): void {
     this.dataService.setData(id);
     let dialogRef = this.dialog.open(DeleteDialogComponent);
-    dialogRef.afterClosed().subscribe(() =>{this.getTournamentList()});
+    dialogRef.afterClosed().subscribe(() => { this.getTournamentList() });
   }
 
 
-  editTournament(id:number){
+  editTournament(id: number) {
     this.dataService.setId(id);
     this.router.navigate(['edit-tournament']);
-    
   }
 
+  roleMatch(allowedRoles): boolean {
+    var payLoad = JSON.parse(window.atob(localStorage.getItem('accessToken').split('.')[1]));
+    var userRole = payLoad['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+    if (allowedRoles == userRole)
+      return true;
+    else
+      return false;
+
+  }
 }

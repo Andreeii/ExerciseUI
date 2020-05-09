@@ -12,4 +12,9 @@ export interface PlayerDto{
     username:string;
     email:string;
     password:string;
+    role:string;
+}
+
+export interface PlayerRoles{
+    name:string;
 }

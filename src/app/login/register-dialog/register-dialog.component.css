@@ -15,8 +15,11 @@ h1 {
 .save{
     margin-left: 5%;
     width: 100px;
+    margin-top: 50px;
+
 }
 
 .cancel{
+    margin-top: 50px;
     width: 100px;
 }

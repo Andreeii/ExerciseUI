@@ -17,11 +17,14 @@ export class RegisterDialogComponent implements OnInit {
   userName = new FormControl('', [Validators.required]);
   email = new FormControl('', [Validators.required]);
   password = new FormControl('', [Validators.required]);
+  selectedRole:string;
+  rolesList = [];
 
   errorMessage: string;
   constructor(private dialogRef: MatDialogRef<LoginComponent>, private playerService: TournamentPlayer) { }
 
   ngOnInit(): void {
+    this.playerService.getRoles().subscribe(roles => this.rolesList = roles);
   }
 
   dismiss() {
@@ -34,7 +37,8 @@ export class RegisterDialogComponent implements OnInit {
       surname: this.surname.value,
       username: this.userName.value,
       email: this.email.value,
-      password: this.password.value
+      password: this.password.value,
+      role:this.selectedRole
     }
     return player;
   }
@@ -47,6 +51,10 @@ export class RegisterDialogComponent implements OnInit {
     this.dialogRef.close(null);
   }
   getErrorMessage() {
+  }
+
+  getPlayerRoles() {
+
   }
 
 }

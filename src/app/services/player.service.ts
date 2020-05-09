@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IPlayer, PlayerDto } from '../models/player.model';
+import { IPlayer, PlayerDto, PlayerRoles } from '../models/player.model';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -19,5 +19,9 @@ export class TournamentPlayer{
 
     postPlayer(player:PlayerDto) {
         return this.http.post(this.baseUrl + 'api/account/register', player);
+    }
+
+    getRoles():Observable<PlayerRoles[]>{
+        return this.http.get<PlayerRoles[]>(this.baseUrl+'api/player/roles');
     }
 } 
