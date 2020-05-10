@@ -22,7 +22,6 @@ export class MainNavComponent {
     this.playerService.getPlayer().subscribe(p => {
       this.name = p.name;
       this.surName = p.surname;
-      console.log(p);
     })
   }
 
