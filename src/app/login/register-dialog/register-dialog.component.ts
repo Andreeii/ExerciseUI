@@ -11,7 +11,8 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./register-dialog.component.css']
 })
 export class RegisterDialogComponent implements OnInit {
-
+  hide = true;
+  
   name = new FormControl('', [Validators.required]);
   surname = new FormControl('', [Validators.required]);
   userName = new FormControl('', [Validators.required]);

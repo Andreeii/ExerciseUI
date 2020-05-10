@@ -13,17 +13,18 @@ import { RegisterDialogComponent } from './register-dialog/register-dialog.compo
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  hide = true;
 
   private returnUrl: string;
 
   public userLoginForm: FormGroup;
 
   constructor(private accountService: AccountService,
-              private router: Router,
-              private route: ActivatedRoute,
-              private formBuilder: FormBuilder,
-              private dialog:MatDialog
-    ) { }
+    private router: Router,
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit() {
     this.userLoginForm = this.formBuilder.group({
@@ -47,8 +48,8 @@ export class LoginComponent implements OnInit {
 
   }
 
-  openRegisterDialog(){
-    this.dialog.open(RegisterDialogComponent,{
+  openRegisterDialog() {
+    this.dialog.open(RegisterDialogComponent, {
       width: '600px',
       height: '550px',
     });

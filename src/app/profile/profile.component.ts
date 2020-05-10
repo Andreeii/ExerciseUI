@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
   username: string;
   password: string;
 
-  Name = new FormControl('');
+  Name = new FormControl(null);
   surname = new FormControl('');
   Email = new FormControl('');
   userName = new FormControl('');

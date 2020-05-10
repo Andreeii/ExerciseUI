@@ -43,6 +43,9 @@ img {
 }
 
 .clouds {
-  /* background-image: url("../../assets/images/clouds.jpg"); */
+  /* background-image: url("../../assets/images/grass.jpg"); */
 }
 
+button{
+  margin-top: 10px;
+}

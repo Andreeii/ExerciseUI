@@ -26,13 +26,7 @@
       <input matInput placeholder="New UserName" [formControl]="userName">
       <!-- <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
-
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Password</mat-label>
-      <input matInput placeholder="New Password" >
-      <!-- <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error> -->
-    </mat-form-field>
-
+    
     <mat-dialog-actions>
       <button mat-raised-button color="primary" (click)="save()">
         <mat-icon>save</mat-icon>Save

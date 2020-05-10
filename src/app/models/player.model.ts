@@ -15,3 +15,8 @@ export interface PlayerDto{
 export interface PlayerRoles{
     name:string;
 }
+
+export interface ChangePassword{
+    curentPassword:string;
+    newPassword:string;
+}

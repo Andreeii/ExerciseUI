@@ -30,10 +30,11 @@
         <mat-error *ngIf="userName.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 </div>
-<div>
+<div class="imput-pass">
     <mat-form-field class="example-full-width">
         <mat-label>Password</mat-label>
-        <input matInput placeholder="Password" [formControl]="password" required>
+        <input matInput type="password" [type] ="hide ? 'password':'text'"  placeholder="Password" [formControl]="password" required>
+        <i class = "material-icons" matSuffix (click) = "hide =!hide">{{hide ?'visibility_off':'visibility'}}</i>
         <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
         <mat-hint>Min 5 characters,one upper case and one symbol </mat-hint>
     </mat-form-field>
