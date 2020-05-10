@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import { WinnedTournaments } from '../models/tournament-table.model';
+import { MatTableDataSource } from '@angular/material/table';
+import { TournamentTableService } from '../services/tournamnet-table.service';
+
 
 @Component({
   selector: 'my-achievements',
@@ -8,10 +11,24 @@ import {Router} from '@angular/router';
 })
 export class MyAchievementsComponent implements OnInit {
 
-  constructor() { }
+  dataSource: MatTableDataSource<WinnedTournaments>;
+  tournamentItemTable: WinnedTournaments[];
+
+  constructor(private torunamentService: TournamentTableService) { }
 
   ngOnInit(): void {
-    
+    this.getTournamentList();
+  }
+  displayedColumns: string[] = ['id', 'tournamentName', 'playerName', 'Nr.WinnedGames'];
+
+  getTournamentList() {
+    this.torunamentService.getWinnedTournaments()
+      .subscribe(t => {
+        this.tournamentItemTable = t;
+        this.dataSource = new MatTableDataSource(t);
+        console.log(t);
+        
+      })
   }
 
 }

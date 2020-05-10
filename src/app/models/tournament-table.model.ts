@@ -1,9 +1,16 @@
 export interface ITournament {
     playerId: number;
-    WinnerName: string;
+    winnerName: string;
     numberOfWins: string;
     tournamentId: number;
     tournamentName: string;
+}
+
+export interface WinnedTournaments {
+    tournamentId: number;
+    tournamentName: string;
+    playerName: string;
+    numberOfWins: number;
 }
 
 export interface TournamentDto {

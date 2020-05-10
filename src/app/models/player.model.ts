@@ -1,18 +1,15 @@
 export interface IPlayer{
     id:number;
     userName:string;
-    mail?:string;
-    registrationDate?:string;
-    role?:string;
 }
 
 export interface PlayerDto{
     name:string;
     surname:string;
-    username:string;
+    userName:string;
     email:string;
-    password:string;
-    role:string;
+    password?:string;
+    role?:string;
 }
 
 export interface PlayerRoles{

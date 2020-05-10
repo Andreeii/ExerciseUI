@@ -24,4 +24,12 @@ export class TournamentPlayer{
     getRoles():Observable<PlayerRoles[]>{
         return this.http.get<PlayerRoles[]>(this.baseUrl+'api/player/roles');
     }
+
+    getPlayer():Observable<PlayerDto>{
+        return this.http.get<PlayerDto>(this.baseUrl + 'api/player/byId');
+    }
+
+    updatePlayer(player:PlayerDto){
+        return this.http.post(this.baseUrl + 'api/account/edit',player);
+    }
 } 

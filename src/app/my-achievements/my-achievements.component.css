@@ -1,0 +1,26 @@
+.tournament-table {
+    width: 90%;
+    margin: 15px auto;
+}
+
+.full-width-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.full-width-table tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+h1 {
+    text-align: center;
+    color: #008CBA;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 40px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+th{
+    background-color: #008CBA;
+    color: aliceblue;
+}
+

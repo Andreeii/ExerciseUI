@@ -35,7 +35,7 @@ export class RegisterDialogComponent implements OnInit {
     const player: PlayerDto = {
       name: this.name.value,
       surname: this.surname.value,
-      username: this.userName.value,
+      userName: this.userName.value,
       email: this.email.value,
       password: this.password.value,
       role:this.selectedRole
@@ -51,10 +51,6 @@ export class RegisterDialogComponent implements OnInit {
     this.dialogRef.close(null);
   }
   getErrorMessage() {
-  }
-
-  getPlayerRoles() {
-
   }
 
 }

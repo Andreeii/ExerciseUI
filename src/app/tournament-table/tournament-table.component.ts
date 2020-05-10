@@ -72,7 +72,7 @@ export class TournamentTableComponent implements OnInit {
 
   roleMatch(allowedRoles): boolean {
     var payLoad = JSON.parse(window.atob(localStorage.getItem('accessToken').split('.')[1]));
-    var userRole = payLoad['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+    var userRole = payLoad['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];    
     if (allowedRoles == userRole)
       return true;
     else
