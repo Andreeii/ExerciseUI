@@ -3,24 +3,28 @@
 
 <div class="parent">
   <form class="example-form">
+    <h2>Name</h2>
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>{{name}}</mat-label>
       <input matInput placeholder="New Name" [formControl]="Name" >
       <!-- <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
 
+    <h2>SurName</h2>
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>{{surName}}</mat-label>
       <input matInput placeholder="New Surname" [formControl]="surname" >
       <!-- <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
 
+    <h2>Email</h2>
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>{{email}}</mat-label>
       <input matInput placeholder="New Email" [formControl]="Email" >
       <!-- <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
 
+    <h2>UserName</h2>
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>{{username}}</mat-label>
       <input matInput placeholder="New UserName" [formControl]="userName">

@@ -15,7 +15,10 @@
 .example-full-width {
   width: 100%;
 }
-
+ h2{
+   margin: 1px;
+   color:#008CBA ;
+ }
 
 h1 {
   font-family: "Times New Roman", Times, serif;
