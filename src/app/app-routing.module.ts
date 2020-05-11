@@ -9,6 +9,7 @@ import { EditTournamentComponent } from './edit-tournament/edit-tournament.compo
 import { LoginComponent } from './login/login.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { AuthGuard } from './guards/auth.guard';
+import { PlayersTableComponent } from './players-table/players-table.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: "add-tournament", component: AddTournamentComponent },
       { path: "edit-tournament", component:EditTournamentComponent},
       { path: "settings", component: SettingsComponent },
+      { path: "players-table", component: PlayersTableComponent },
       { path: "profile", component: ProfileComponent }
     ]
   },

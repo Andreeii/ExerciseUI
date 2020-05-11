@@ -27,3 +27,7 @@ h1{
   margin-bottom: 50px;
 }
 
+th{
+  background-color: #008CBA;
+  color: aliceblue;
+}

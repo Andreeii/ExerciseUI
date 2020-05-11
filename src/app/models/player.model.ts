@@ -1,6 +1,10 @@
 export interface IPlayer{
     id:number;
+    name:string;
+    surname:string;
     userName:string;
+    email:string;
+    registrationDate:number;
 }
 
 export interface PlayerDto{

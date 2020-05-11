@@ -36,6 +36,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { environment } from 'src/environments/environment';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { PlayersTableComponent } from './players-table/players-table.component';
 
 
 
@@ -54,7 +55,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     EditTournamentComponent,
     DeleteDialogComponent,
     LoginComponent,
-    RegisterDialogComponent
+    RegisterDialogComponent,
+    PlayersTableComponent
   
   ],
   imports: [
