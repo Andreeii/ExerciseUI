@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TournamentPlayer } from '../services/player.service';
 import { PlayerDto } from '../models/player.model';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
+import { error } from '@angular/compiler/src/util';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'profile',
@@ -11,6 +13,7 @@ import { FormControl } from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
 
+  public errorMsg;
   name: string;
   surName: string;
   email: string;
@@ -20,7 +23,7 @@ export class ProfileComponent implements OnInit {
   surname = new FormControl('');
   Email = new FormControl('');
   userName = new FormControl('');
-  constructor(private router: Router, private playerService: TournamentPlayer) { }
+  constructor(private router: Router, private playerService: TournamentPlayer, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.playerService.getPlayer().subscribe(p => {
@@ -30,13 +33,11 @@ export class ProfileComponent implements OnInit {
       this.username = p.userName;
       console.log(p);
     })
-
   }
 
   cancel() {
     this.router.navigate(['tournament-table']);
   }
-
 
   save() {
     const player: PlayerDto = {
@@ -45,7 +46,13 @@ export class ProfileComponent implements OnInit {
       userName: this.userName.value,
       email: this.Email.value
     }
-    this.playerService.updatePlayer(player).subscribe(p => console.log(p));
+    this.playerService.updatePlayer(player).subscribe(p=>{console.log(p)});
   }
+
+  getErrorMessage(){
+    if (this.Email.hasError('required')) {
+      return 'You must enter a value';
+    }
+    return this.Email.hasError('email') ? 'Not a valid email' : '';  }
 
 }

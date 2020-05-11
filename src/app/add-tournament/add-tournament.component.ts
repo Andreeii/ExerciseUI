@@ -48,12 +48,6 @@ export class AddTournamentComponent implements OnInit {
     this.routeToTournamentTablePage();
   }
 
-  editTournament(id: number) {
-    id = this.dataService.getId();
-    this.postTournamentService.getTournamentById(id).subscribe(x =>console.log(x));
-    
-  }
-
   createTournamentDto() {
     const Games: GameDto[] = [];
 
@@ -89,10 +83,9 @@ export class AddTournamentComponent implements OnInit {
     }
     const arrayOfBooleans = this.scoreTable.map(x => x.map(y => y.checked));
     console.log('arrayOfBooleans', arrayOfBooleans);
-    console.log('this.scoreTable', /*JSON.stringify(this.scoreTable, undefined, 2)*/this.scoreTable);
+    console.log('this.scoreTable', /*JSON.stringify(this.scoreTable, undefined, 2),*/this.scoreTable);
   }
 
-  // generating table
   generateInitialTable(): TableCell[][] {
     const table: TableCell[][] = [];
 

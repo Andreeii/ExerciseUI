@@ -35,6 +35,7 @@ import { RegisterDialogComponent } from './login/register-dialog/register-dialog
 import { AuthGuard } from './guards/auth.guard';
 import { environment } from 'src/environments/environment';
 import { JwtModule } from '@auth0/angular-jwt';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -77,6 +78,7 @@ import { JwtModule } from '@auth0/angular-jwt';
     MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
+    MatSnackBarModule,
     NgMultiSelectDropDownModule.forRoot(),
     JwtModule.forRoot({
       config: {

@@ -3,7 +3,6 @@
     <mat-form-field class="example-full-width">
         <mat-label>Name</mat-label>
         <input matInput placeholder="PlayerName" [formControl]="name" required>
-        <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 </div>
 
@@ -11,7 +10,6 @@
     <mat-form-field class="example-full-width">
         <mat-label>Surname</mat-label>
         <input matInput placeholder="PlayerSurname" [formControl]="surname" required>
-        <mat-error *ngIf="surname.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 </div>
 
@@ -19,7 +17,7 @@
     <mat-form-field class="example-full-width">
         <mat-label>Email</mat-label>
         <input matInput placeholder="Email" [formControl]="email" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
     </mat-form-field>
 </div>
 
@@ -27,7 +25,6 @@
     <mat-form-field class="example-full-width">
         <mat-label>Username</mat-label>
         <input matInput placeholder="Username" [formControl]="userName" required>
-        <mat-error *ngIf="userName.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 </div>
 <div class="imput-pass">

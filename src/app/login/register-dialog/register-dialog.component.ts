@@ -12,13 +12,13 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class RegisterDialogComponent implements OnInit {
   hide = true;
-  
+
   name = new FormControl('', [Validators.required]);
   surname = new FormControl('', [Validators.required]);
   userName = new FormControl('', [Validators.required]);
-  email = new FormControl('', [Validators.required]);
-  password = new FormControl('', [Validators.required]);
-  selectedRole:string;
+  email = new FormControl('', [Validators.required, Validators.email]);
+  password = new FormControl('', [Validators.required, Validators.minLength(5)]);
+  selectedRole: string;
   rolesList = [];
 
   errorMessage: string;
@@ -39,7 +39,7 @@ export class RegisterDialogComponent implements OnInit {
       userName: this.userName.value,
       email: this.email.value,
       password: this.password.value,
-      role:this.selectedRole
+      role: this.selectedRole
     }
     return player;
   }
@@ -52,6 +52,16 @@ export class RegisterDialogComponent implements OnInit {
     this.dialogRef.close(null);
   }
   getErrorMessage() {
+    if (this.password.hasError('required')) {
+      return 'You must enter a value';
+    }
+    return this.password.hasError('minLength(5)') ? 'Not a valid password' : '';
+  }
+  getErrorMessageEmail() {
+    if (this.email.hasError('required')) {
+      return 'You must enter a value';
+    }
+    return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
 }
