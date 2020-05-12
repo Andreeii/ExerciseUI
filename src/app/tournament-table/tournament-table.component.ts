@@ -77,6 +77,5 @@ export class TournamentTableComponent implements OnInit {
       return true;
     else
       return false;
-
   }
 }

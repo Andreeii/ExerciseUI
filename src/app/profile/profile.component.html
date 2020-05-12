@@ -1,41 +1,37 @@
 <h1>Edit Profile</h1>
-<button mat-raised-button color="warn" class="deleteProfile">DeleteProfile</button>
 
 <div class="parent">
-  <form class="example-form">
-    <h2>Name</h2>
+  <form class="example-form" [formGroup]="form" (ngSubmit)="save()">
     <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>{{name}}</mat-label>
-      <input matInput placeholder="New Name" [formControl]="Name" >
-      <mat-error *ngIf="Name.invalid">{{errorMsg}}</mat-error>
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="New Name" formControlName="name" required>
+      <mat-error *ngIf="form.get('name').hasError('required')">This field is required</mat-error>
     </mat-form-field>
 
-    <h2>SurName</h2>
     <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>{{surName}}</mat-label>
-      <input matInput placeholder="New Surname" [formControl]="surname" >
+      <mat-label>Surname</mat-label>
+      <input matInput placeholder="New Surname" formControlName="surname" required>
       <!-- <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
 
-    <h2>Email</h2>
     <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>{{email}}</mat-label>
-      <input matInput placeholder="New Email" [formControl]="Email">
-      <!-- <mat-error *ngIf="Email.invalid">{{getErrorMessage()}}</mat-error> -->
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="New Email" formControlName="email" required>
+      <mat-error *ngIf="form.get('email').invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 
-    <h2>UserName</h2>
     <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>{{username}}</mat-label>
-      <input matInput placeholder="New UserName" [formControl]="userName">
+      <mat-label>UserName</mat-label>
+      <input matInput placeholder="New UserName" formControlName="userName" required>
       <!-- <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
-    
+
     <mat-dialog-actions>
-      <button mat-raised-button color="primary" (click)="save()">
+      <button mat-raised-button color="primary" type="submit"
+        [disabled]="!form.get('email').valid || !form.get('name').valid || !form.get('surname').valid || !form.get('userName').valid">
         <mat-icon>save</mat-icon>Save
       </button>
-      <button mat-raised-button color="warn" (click)="cancel()" class="cancel">
+      <button mat-raised-button color="warn" type="button" (click)="cancel()" class="cancel">
         <mat-icon>cancel</mat-icon>Cancel
       </button>
     </mat-dialog-actions>

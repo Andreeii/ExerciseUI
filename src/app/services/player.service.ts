@@ -4,6 +4,8 @@ import { IPlayer, PlayerDto, PlayerRoles, ChangePassword } from '../models/playe
 import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
+import { PaginatedRequest } from '../infrastructure/models/PaginatedRequest';
+import { PagedResult } from '../infrastructure/models/PagedResult';
 
 @Injectable({
     providedIn: 'root'
@@ -44,4 +46,8 @@ export class TournamentPlayer {
     private handleError(error: HttpErrorResponse) {
         return Observable.throw(error.message);
     }
+
+    getPlayersPaged(paginatedRequest: PaginatedRequest): Observable<PagedResult<IPlayer>> {
+        return this.http.post<PagedResult<IPlayer>>(this.baseUrl + 'api/player/paginatedSearch', paginatedRequest);
+      }
 } 

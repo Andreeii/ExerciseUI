@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TournamentPlayer } from '../services/player.service';
 import { PlayerDto } from '../models/player.model';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { error } from '@angular/compiler/src/util';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -13,26 +13,39 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ProfileComponent implements OnInit {
 
-  public errorMsg;
-  name: string;
-  surName: string;
-  email: string;
-  username: string;
+  // name: string;
+  // surName: string;
+  // email: string;
+  // username: string;
 
-  Name = new FormControl('');
-  surname = new FormControl('');
-  Email = new FormControl('');
-  userName = new FormControl('');
+  // name = new FormControl('',[Validators.required,Validators.maxLength(8)]);
+  // surname = new FormControl('');
+  // email = new FormControl('');
+  // userName = new FormControl('');
+
+  form: FormGroup;
   constructor(private router: Router, private playerService: TournamentPlayer, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+
+    this.initializeForm();
+    this.getPlayer()
+  }
+
+  getPlayer() {
     this.playerService.getPlayer().subscribe(p => {
-      this.name = p.name;
-      this.surName = p.surname;
-      this.email = p.email;
-      this.username = p.userName;
-      console.log(p);
+
+      this.form.patchValue({ ...p });
     })
+  }
+
+  private initializeForm(): void {
+    this.form = new FormGroup({
+      name: new FormControl('', [Validators.required, Validators.maxLength(8)]),
+      surname: new FormControl(''),
+      email: new FormControl('',[Validators.required,Validators.email]),
+      userName: new FormControl('')
+    });
   }
 
   cancel() {
@@ -41,18 +54,17 @@ export class ProfileComponent implements OnInit {
 
   save() {
     const player: PlayerDto = {
-      name: this.Name.value,
-      surname: this.surname.value,
-      userName: this.userName.value,
-      email: this.Email.value
+      ...this.form.getRawValue()
     }
-    this.playerService.updatePlayer(player).subscribe(p=>{console.log(p)});
+    this.playerService.updatePlayer(player).subscribe(p => { console.log(p) });
+    this.getPlayer()
   }
 
-  getErrorMessage(){
-    if (this.Email.hasError('required')) {
+  getErrorMessage() {
+    if (this.form.get('email').hasError('required')) {
       return 'You must enter a value';
     }
-    return this.Email.hasError('email') ? 'Not a valid email' : '';  }
+    return this.form.get('email').hasError('email') ? 'Not a valid email' : '';
+  }
 
 }
