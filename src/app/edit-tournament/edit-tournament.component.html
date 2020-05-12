@@ -1,4 +1,4 @@
-<!-- <p>{{tournamentName}}</p>
+<p *ngIf="tournament">{{tournament.name}}</p>
 
 <div class="table">
   <div class="row">
@@ -13,10 +13,11 @@
     </div>
 
     <div *ngFor="let cell of row; index as j" class="cell">
-      <mat-checkbox type="checkbox" *ngIf="cell.checked !== 'x'" [(ngModel)]="cell.checked"(ngModelChange)="playerUpdated(cell)"></mat-checkbox>
+      <mat-checkbox type="checkbox" *ngIf="cell.checked !== 'x'" [(ngModel)]="cell.checked"
+        (ngModelChange)="playerUpdated(cell)"></mat-checkbox>
     </div>
   </div>
 </div>
 
 <button mat-raised-button color="primary" (click)="saveTournament()">Save</button>
-<button mat-raised-button color="warn" (click)="routeToTournamentTablePage()">Cancel</button> -->
+<!-- <button mat-raised-button color="warn" (click)="routeToTournamentTablePage()">Cancel</button> -->
