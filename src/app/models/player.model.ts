@@ -7,6 +7,10 @@ export interface IPlayer{
     registrationDate:number;
 }
 
+export interface PlyerForEditTournament{
+    userName:string;
+}
+
 export interface PlayerDto{
     name:string;
     surname:string;

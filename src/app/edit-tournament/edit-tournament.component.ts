@@ -2,13 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/shared/data.service';
 import { TournamentTableService } from '../services/tournamnet-table.service';
 import { TournamentDto, GameDto } from '../models/tournament-table.model';
-import { IPlayer } from '../models/player.model';
+import { IPlayer, PlyerForEditTournament } from '../models/player.model';
+import { Router } from '@angular/router';
+import { TournamentPlayer } from '../services/player.service';
 
 type TableCell = {
   row: number;
   column: number;
   checked: boolean | string;
   playerIdByRow: number;
+  id: number;
 };
 
 @Component({
@@ -24,24 +27,27 @@ export class EditTournamentComponent implements OnInit {
   scoreTable: TableCell[][] = [];
   tournament: TournamentDto;
 
-  constructor(private dataService: DataService, private editTournamentService: TournamentTableService) { }
+  constructor(private dataService: DataService, private editTournamentService: TournamentTableService, private router: Router, private playerService: TournamentPlayer) { }
 
   ngOnInit(): void {
     this.id = this.dataService.getId();
     this.editTournamentService.getTournamentById(this.id).subscribe(x => this.onTour(x));
-    // this.editTournamentService.getTournamentById(this.id).subscribe(x=>console.log(x));
-
   }
 
-  onTour(tour) {
+  async onTour(tour) {
+
     this.tournament = tour;
     this.newGameList = this.prepareGameList(this.tournament.game);
     const firstRow = this.newGameList[0];
-    const firstPlayer = { id: firstRow[0].playerGame[0].playerId, userName: firstRow[0].playerGame[0].playerId }
-    this.players = [firstPlayer, ...this.newGameList[0].map(game => {
+    const player1 = await this.playerService.getPlayerById(firstRow[0].playerGame[0].playerId).toPromise();
+    const firstPlayer = { id: firstRow[0].playerGame[0].playerId, userName: player1.userName }
+    this.players = await Promise.all([firstPlayer, ...this.newGameList[0].map(async (game) => {
+
       const secondPlayerId = game.playerGame[1].playerId;
-      return { id: secondPlayerId, userName: `user${secondPlayerId}` };
-    })];
+
+      const player = await this.playerService.getPlayerById(secondPlayerId).toPromise();
+      return { id: secondPlayerId, userName: player.userName };
+    })]);
 
     this.scoreTable = this.generateInitialTable();
     this.populateTable(this.scoreTable);
@@ -101,6 +107,7 @@ export class EditTournamentComponent implements OnInit {
           column: j,
           checked: i === j ? "x" : playerGame1.isWinner,
           playerIdByRow: playerGame1.playerId,
+          id: playerGame1.gameId
         }
         table[i][j] = obj;
 
@@ -109,6 +116,7 @@ export class EditTournamentComponent implements OnInit {
           column: i,
           checked: i === j ? "x" : playerGame2.isWinner,
           playerIdByRow: playerGame2.playerId,
+          id: playerGame2.gameId
         }
         table[j][i] = obj2;
       }
@@ -128,20 +136,33 @@ export class EditTournamentComponent implements OnInit {
           playerGame: [
             {
               playerId: player1.playerIdByRow,
-              isWinner: !!player1.checked
+              isWinner: !!player1.checked,
             },
             {
               playerId: player2.playerIdByRow,
-              isWinner: !!player2.checked
+              isWinner: !!player2.checked,
             }
-          ]
+          ],
+          tournamentId: this.tournament.id,
         }
         Games.push(Game);
       }
     }
+
+    const GamesWithId = Games.map((game, index) => {
+      game.id = this.tournament.game[index].id
+      game.playerGame = game.playerGame.map((playerGame, idx) => {
+        console.log(index, this.tournament.game[index]);
+        playerGame.gameId = game.id;
+        playerGame.id = this.tournament.game[index].playerGame[idx].id;
+        return playerGame
+      })
+      return game;
+    })
+
     const tournament = {
       name: this.tournament.name,
-      game: Games,
+      game: GamesWithId,
       id: this.tournament.id
     }
     return tournament;
@@ -149,10 +170,14 @@ export class EditTournamentComponent implements OnInit {
 
   saveTournament() {
     const tournament = this.createTournamentDto();
-    console.log({tournament})
-    // this.postTournamentService.postTournament(tournament).subscribe(x => {
-    //   console.log(x);
-    // });
+    console.log({ tournament })
+    this.editTournamentService.updateTournament(tournament).subscribe(x => {
+      console.log(x);
+    });
+  }
+
+  routeToTournamentTablePage() {
+    this.router.navigate(['tournament-table']);
   }
 
 }

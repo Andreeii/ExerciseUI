@@ -35,4 +35,8 @@ export class TournamentTableService {
         return this.http.get<WinnedTournaments[]>(this.baseUrl + ('api/tournament/winned'))
     }
 
+    updateTournament(tournament: TournamentDto) {
+        return this.http.put(this.baseUrl + 'api/tournament', tournament)
+    }
+
 }

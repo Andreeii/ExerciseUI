@@ -20,12 +20,13 @@ export interface TournamentDto {
 
 }
 export interface GameDto {
-    tournamentId?: number;
     id?: number;
+    tournamentId?: number;
     playerGame: PlayerGameDto[];
 }
 
 export interface PlayerGameDto {
+    id?:number;
     playerId: number;
     gameId?: number;
     isWinner: boolean;

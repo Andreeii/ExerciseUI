@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { IPlayer, PlayerDto, PlayerRoles, ChangePassword } from '../models/player.model';
+import { IPlayer, PlayerDto, PlayerRoles, ChangePassword, PlyerForEditTournament } from '../models/player.model';
 import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs/operators';
@@ -32,11 +32,15 @@ export class TournamentPlayer {
         return this.http.get<PlayerDto>(this.baseUrl + 'api/player/byId');
     }
 
+
+    getPlayerById(id: number): Observable<IPlayer> {
+        return this.http.get<IPlayer>(this.baseUrl + 'api/player/' + id);
+    }
+
+
+
     updatePlayer(player: PlayerDto) {
         return this.http.post(this.baseUrl + 'api/account/edit', player);
-        // .pipe(
-        //     catchError(this.handleError)
-        // );
     }
 
     changePassword(passwordDto: ChangePassword) {
@@ -49,5 +53,5 @@ export class TournamentPlayer {
 
     getPlayersPaged(paginatedRequest: PaginatedRequest): Observable<PagedResult<IPlayer>> {
         return this.http.post<PagedResult<IPlayer>>(this.baseUrl + 'api/player/paginatedSearch', paginatedRequest);
-      }
+    }
 } 

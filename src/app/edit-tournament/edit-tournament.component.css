@@ -25,3 +25,27 @@
 .player {
   background-color: #008CBA;
 }
+
+p {
+  text-align: center;
+  color: darkorchid;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 40px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.save{
+  background-color: #008CBA;
+  width: 100px;
+  margin-left: 20px;
+}
+
+.cancel{
+  width: 100px;
+}
+
+button{
+  margin-top:30px;
+  margin-left: 50px;
+}
