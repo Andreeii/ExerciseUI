@@ -15,6 +15,7 @@ import { PaginatedRequest } from '../infrastructure/models/PaginatedRequest';
 import { Filter } from '../infrastructure/models/Filter';
 import { FilterLogicalOperators } from '../infrastructure/models/FilterLogicalOperators';
 import { DataService } from '../services/shared/data.service';
+import { DeletePlayerDialogComponent } from './delete-player-dialog/delete-player-dialog.component';
 
 @Component({
   selector: 'players-table',
@@ -49,9 +50,9 @@ export class PlayersTableComponent implements AfterViewInit {
   constructor(
     private playerService: TournamentPlayer,
     private formBuilder: FormBuilder,
-    public dialog: MatDialog,
+    private dialog: MatDialog,
     public snackBar: MatSnackBar,
-    private dataService: DataService
+    private dataService: DataService,
   ) {
     this.displayedColumns = this.tableColumns.map(column => column.name);
     this.filterForm = this.formBuilder.group({
@@ -141,14 +142,10 @@ export class PlayersTableComponent implements AfterViewInit {
       return false;
   }
 
-  // deletePlayer(playerId:number){
-  //     this.playerService.deletePlayer(playerId).subscribe(p=>console.log(playerId));
-  // }
-
   openDeletePlayerDialog(id: number): void {
     this.dataService.setData(id);
-    // let dialogRef = this.dialog.open();
-    // dialogRef.afterClosed().subscribe(() => { this.() });
+    let dialogRef = this.dialog.open(DeletePlayerDialogComponent);
+    dialogRef.afterClosed().subscribe(() => { this.loadBooksFromApi() });
   }
 
 

@@ -37,6 +37,7 @@ import { environment } from 'src/environments/environment';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PlayersTableComponent } from './players-table/players-table.component';
+import { DeletePlayerDialogComponent } from './players-table/delete-player-dialog/delete-player-dialog.component';
 
 
 
@@ -56,7 +57,8 @@ import { PlayersTableComponent } from './players-table/players-table.component';
     DeleteDialogComponent,
     LoginComponent,
     RegisterDialogComponent,
-    PlayersTableComponent
+    PlayersTableComponent,
+    DeletePlayerDialogComponent
   
   ],
   imports: [

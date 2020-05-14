@@ -54,8 +54,7 @@ export class TournamentTableComponent implements OnInit {
       height: '600px',
       data: {}
     });
-    dialogRef.afterClosed().subscribe(result => {
-    });
+    dialogRef.afterClosed().subscribe(() => {this.getTournamentList()});
   }
 
   openDeleteTournamentDialog(id: number): void {
