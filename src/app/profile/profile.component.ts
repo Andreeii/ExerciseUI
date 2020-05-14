@@ -57,7 +57,6 @@ export class ProfileComponent implements OnInit {
       ...this.form.getRawValue()
     }
     this.playerService.updatePlayer(player).subscribe(p => { console.log(p) });
-    this.getPlayer()
   }
 
   getErrorMessage() {

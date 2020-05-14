@@ -1,3 +1,5 @@
+import { PlayerGameDto } from './tournament-table.model';
+
 export interface IPlayer{
     id:number;
     name:string;
@@ -5,10 +7,6 @@ export interface IPlayer{
     userName:string;
     email:string;
     registrationDate:number;
-}
-
-export interface PlyerForEditTournament{
-    userName:string;
 }
 
 export interface PlayerDto{
@@ -27,4 +25,10 @@ export interface PlayerRoles{
 export interface ChangePassword{
     curentPassword:string;
     newPassword:string;
+}
+
+export interface  PlayerForDelete{
+    id:number;
+    userName:string;
+    playerGame:PlayerGameDto[];
 }

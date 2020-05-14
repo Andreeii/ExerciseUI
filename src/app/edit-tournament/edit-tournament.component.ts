@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/shared/data.service';
 import { TournamentTableService } from '../services/tournamnet-table.service';
 import { TournamentDto, GameDto } from '../models/tournament-table.model';
-import { IPlayer, PlyerForEditTournament } from '../models/player.model';
 import { Router } from '@angular/router';
 import { TournamentPlayer } from '../services/player.service';
 
@@ -11,7 +10,6 @@ type TableCell = {
   column: number;
   checked: boolean | string;
   playerIdByRow: number;
-  id: number;
 };
 
 @Component({
@@ -42,9 +40,7 @@ export class EditTournamentComponent implements OnInit {
     const player1 = await this.playerService.getPlayerById(firstRow[0].playerGame[0].playerId).toPromise();
     const firstPlayer = { id: firstRow[0].playerGame[0].playerId, userName: player1.userName }
     this.players = await Promise.all([firstPlayer, ...this.newGameList[0].map(async (game) => {
-
       const secondPlayerId = game.playerGame[1].playerId;
-
       const player = await this.playerService.getPlayerById(secondPlayerId).toPromise();
       return { id: secondPlayerId, userName: player.userName };
     })]);
@@ -60,7 +56,7 @@ export class EditTournamentComponent implements OnInit {
     }
     const arrayOfBooleans = this.scoreTable.map(x => x.map(y => y.checked));
     console.log('arrayOfBooleans', arrayOfBooleans);
-    console.log('this.scoreTable', /*JSON.stringify(this.scoreTable, undefined, 2),*/this.scoreTable);
+    console.log('this.scoreTable', this.scoreTable);
   }
 
   prepareGameList(games) {
@@ -152,7 +148,7 @@ export class EditTournamentComponent implements OnInit {
     const GamesWithId = Games.map((game, index) => {
       game.id = this.tournament.game[index].id
       game.playerGame = game.playerGame.map((playerGame, idx) => {
-        console.log(index, this.tournament.game[index]);
+        // console.log(index, this.tournament.game[index]);
         playerGame.gameId = game.id;
         playerGame.id = this.tournament.game[index].playerGame[idx].id;
         return playerGame
@@ -174,6 +170,7 @@ export class EditTournamentComponent implements OnInit {
     this.editTournamentService.updateTournament(tournament).subscribe(x => {
       console.log(x);
     });
+    this.router.navigate(['tournament-table']);
   }
 
   routeToTournamentTablePage() {

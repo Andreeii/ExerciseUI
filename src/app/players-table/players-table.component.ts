@@ -14,6 +14,7 @@ import { merge } from 'rxjs';
 import { PaginatedRequest } from '../infrastructure/models/PaginatedRequest';
 import { Filter } from '../infrastructure/models/Filter';
 import { FilterLogicalOperators } from '../infrastructure/models/FilterLogicalOperators';
+import { DataService } from '../services/shared/data.service';
 
 @Component({
   selector: 'players-table',
@@ -32,7 +33,8 @@ export class PlayersTableComponent implements AfterViewInit {
     { name: 'surname', index: 'surname', displayName: 'Surname' },
     { name: 'userName', index: 'userName', displayName: 'Username', useInSearch: true },
     { name: 'email', index: 'email', displayName: 'Email' },
-    { name: 'registrationDate', index: 'registrationDate', displayName: 'RegistrationDate' }
+    { name: 'registrationDate', index: 'registrationDate', displayName: 'RegistrationDate' },
+    { name: 'action', index:'action',displayName:'Action'}
   ];
   displayedColumns: string[];
 
@@ -48,7 +50,8 @@ export class PlayersTableComponent implements AfterViewInit {
     private playerService: TournamentPlayer,
     private formBuilder: FormBuilder,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private dataService: DataService
   ) {
     this.displayedColumns = this.tableColumns.map(column => column.name);
     this.filterForm = this.formBuilder.group({
@@ -137,5 +140,16 @@ export class PlayersTableComponent implements AfterViewInit {
     else
       return false;
   }
+
+  // deletePlayer(playerId:number){
+  //     this.playerService.deletePlayer(playerId).subscribe(p=>console.log(playerId));
+  // }
+
+  openDeletePlayerDialog(id: number): void {
+    this.dataService.setData(id);
+    // let dialogRef = this.dialog.open();
+    // dialogRef.afterClosed().subscribe(() => { this.() });
+  }
+
 
 }

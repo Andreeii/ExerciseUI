@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { IPlayer, PlayerDto, PlayerRoles, ChangePassword, PlyerForEditTournament } from '../models/player.model';
-import { Observable, throwError } from 'rxjs';
+import { IPlayer, PlayerDto, PlayerRoles, ChangePassword, PlayerForDelete } from '../models/player.model';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { catchError } from 'rxjs/operators';
 import { PaginatedRequest } from '../infrastructure/models/PaginatedRequest';
 import { PagedResult } from '../infrastructure/models/PagedResult';
 
@@ -38,7 +37,6 @@ export class TournamentPlayer {
     }
 
 
-
     updatePlayer(player: PlayerDto) {
         return this.http.post(this.baseUrl + 'api/account/edit', player);
     }
@@ -53,5 +51,9 @@ export class TournamentPlayer {
 
     getPlayersPaged(paginatedRequest: PaginatedRequest): Observable<PagedResult<IPlayer>> {
         return this.http.post<PagedResult<IPlayer>>(this.baseUrl + 'api/player/paginatedSearch', paginatedRequest);
+    }
+
+    deletePlayer(playerId: number):Observable<PlayerForDelete> {
+        return this.http.delete<PlayerForDelete>(this.baseUrl + 'api/player/' + playerId);
     }
 } 

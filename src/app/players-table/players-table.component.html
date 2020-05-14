@@ -38,10 +38,10 @@
             <td mat-cell *matCellDef="let player"> {{player.registrationDate|date}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef>Actions</th>
-            <td mat-cell *matCellDef="let row">
-              <button mat-mini-fab color="warn" *ngIf = "roleMatch('admin')"><i class="fa fa-trash"></i></button>
+        <ng-container matColumnDef="action" >
+            <th mat-header-cell *matHeaderCellDef >Actions</th>
+            <td mat-cell *matCellDef="let row" >
+              <button mat-mini-fab color="warn" *ngIf="roleMatch('admin')" (click)="openDeletePlayerDialog(row.id)"><i class="fa fa-trash"></i></button>
             </td>
           </ng-container>
 
