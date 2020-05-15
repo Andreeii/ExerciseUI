@@ -49,3 +49,9 @@ img {
 button{
   margin-top: 10px;
 }
+
+.imgStyle {
+  margin-left: 15%;
+  width: 120px;
+  height: 120px;
+}

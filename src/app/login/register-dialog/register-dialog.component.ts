@@ -13,6 +13,9 @@ import { FormControl, Validators } from '@angular/forms';
 export class RegisterDialogComponent implements OnInit {
   hide = true;
 
+  imgUrl: string = "/assets/images/unnamed.jpg";
+  fileToUpload: File = null;
+
   name = new FormControl('', [Validators.required]);
   surname = new FormControl('', [Validators.required]);
   userName = new FormControl('', [Validators.required]);
@@ -27,6 +30,20 @@ export class RegisterDialogComponent implements OnInit {
   ngOnInit(): void {
     this.playerService.getRoles().subscribe(roles => this.rolesList = roles);
   }
+
+  handleFileInput(file: FileList) {
+    this.fileToUpload = file.item(0);
+    var reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.imgUrl = event.target.result;
+    }
+    reader.readAsDataURL(this.fileToUpload);
+  }
+
+  saveImage(){
+    this.playerService.uploadImage(this.fileToUpload).subscribe(i=>console.log(i));
+  }
+
 
   dismiss() {
     this.dialogRef.close(null);
@@ -43,6 +60,8 @@ export class RegisterDialogComponent implements OnInit {
     }
     return player;
   }
+
+
 
   savePlayer() {
     const player = this.createPlayerDto();

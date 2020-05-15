@@ -4,6 +4,7 @@
     [opened]="(isHandset$ | async) === false">
     <mat-toolbar color="warn">{{name}} {{surName}}</mat-toolbar>
     <mat-nav-list>
+      <img [src]="imgUrl" class="imgStyle">
       <a mat-list-item routerLink="/profile"><i class="fa fa-user"></i>Profile</a>
       <a mat-list-item routerLink="/tournament-table"><i class="fa fa-list"></i>AllTournaments</a>
       <a mat-list-item routerLink="/my-achievements"><i class="fa fa-trophy"></i>MyAchievments</a>

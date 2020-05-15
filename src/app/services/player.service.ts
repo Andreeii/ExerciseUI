@@ -56,4 +56,10 @@ export class TournamentPlayer {
     deletePlayer(playerId: number):Observable<PlayerForDelete> {
         return this.http.delete<PlayerForDelete>(this.baseUrl + 'api/player/' + playerId);
     }
+
+    uploadImage(filetToUpload:File){
+        const formData:FormData = new FormData();
+        formData.append('Image',filetToUpload,filetToUpload.name);
+        return this.http.post(this.baseUrl +'api/account/uploadImage',formData);
+    }
 } 

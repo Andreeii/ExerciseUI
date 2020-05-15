@@ -48,6 +48,12 @@
         </mat-select>
       </mat-form-field>
 </div>
+
+<div>
+    <input type="file" #Image accept="image/*"(change)="handleFileInput($event.target.files)">
+    <img [src]="imgUrl" class="imgStyle">
+    <button (click)="saveImage()">Submit</button>
+</div>
 <mat-dialog-actions>
     <button mat-raised-button color="primary" class="save" (click)="savePlayer()"
         [disabled]="!userName.valid ||!surname.valid ||!email.valid ||!password.valid||!name.valid">

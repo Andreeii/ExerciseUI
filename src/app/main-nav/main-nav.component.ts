@@ -12,6 +12,7 @@ import { TournamentPlayer } from '../services/player.service';
   styleUrls: ['./main-nav.component.css']
 })
 export class MainNavComponent {
+  imgUrl: string = "/assets/images/unnamed.jpg";
 
   name: string;
   surName: string;
