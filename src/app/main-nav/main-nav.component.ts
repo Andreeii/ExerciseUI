@@ -12,7 +12,7 @@ import { TournamentPlayer } from '../services/player.service';
   styleUrls: ['./main-nav.component.css']
 })
 export class MainNavComponent {
-  imgUrl: string = "/assets/images/unnamed.jpg";
+  imgUrl: string ;
 
   name: string;
   surName: string;
@@ -23,6 +23,7 @@ export class MainNavComponent {
     this.playerService.getPlayer().subscribe(p => {
       this.name = p.name;
       this.surName = p.surname;
+      this.imgUrl = "http://localhost:60907/"+p.profileImage;
     })
   }
 

@@ -40,11 +40,6 @@ export class RegisterDialogComponent implements OnInit {
     reader.readAsDataURL(this.fileToUpload);
   }
 
-  saveImage(){
-    this.playerService.uploadImage(this.fileToUpload).subscribe(i=>console.log(i));
-  }
-
-
   dismiss() {
     this.dialogRef.close(null);
   }
@@ -56,7 +51,8 @@ export class RegisterDialogComponent implements OnInit {
       userName: this.userName.value,
       email: this.email.value,
       password: this.password.value,
-      role: this.selectedRole
+      role: this.selectedRole,
+      profileImage:this.fileToUpload.name
     }
     return player;
   }
@@ -68,6 +64,7 @@ export class RegisterDialogComponent implements OnInit {
     this.playerService.postPlayer(player).subscribe(x => {
       console.log(x);
     });
+    this.playerService.uploadImage(this.fileToUpload).subscribe(i=>console.log(i));
     this.dialogRef.close(null);
   }
   getErrorMessage() {

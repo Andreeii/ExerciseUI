@@ -16,6 +16,7 @@ export interface PlayerDto{
     email:string;
     password?:string;
     role?:string;
+    profileImage:string;
 }
 
 export interface PlayerRoles{
