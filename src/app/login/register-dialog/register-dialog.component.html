@@ -30,8 +30,9 @@
 <div class="imput-pass">
     <mat-form-field class="example-full-width">
         <mat-label>Password</mat-label>
-        <input matInput type="password" [type] ="hide ? 'password':'text'"  placeholder="Password" [formControl]="password" required>
-        <i class = "material-icons" matSuffix (click) = "hide =!hide">{{hide ?'visibility_off':'visibility'}}</i>
+        <input matInput type="password" [type]="hide ? 'password':'text'" placeholder="Password"
+            [formControl]="password" required>
+        <i class="material-icons" matSuffix (click)="hide =!hide">{{hide ?'visibility_off':'visibility'}}</i>
         <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
         <mat-hint>Min 5 characters,one upper case and one symbol </mat-hint>
     </mat-form-field>
@@ -40,25 +41,26 @@
 <div>
     <mat-form-field class="example-full-width">
         <mat-label>Select Role</mat-label>
-        <mat-select [(value)] = "selectedRole">
+        <mat-select [(value)]="selectedRole">
             <mat-option></mat-option>
-          <mat-option *ngFor="let role of rolesList" [value]="role.name">
-            {{role.name}}
-          </mat-option>
+            <mat-option *ngFor="let role of rolesList" [value]="role.name">
+                {{role.name}}
+            </mat-option>
         </mat-select>
-      </mat-form-field>
+    </mat-form-field>
 </div>
 
-<div>
-    <input type="file" #Image accept="image/*"(change)="handleFileInput($event.target.files)">
+<div class="imgPosition">
+
     <img [src]="imgUrl" class="imgStyle">
+    <input type="file" #Image accept="image/*" (change)="handleFileInput($event.target.files)">
 </div>
 <mat-dialog-actions>
     <button mat-raised-button color="primary" class="save" (click)="savePlayer()"
         [disabled]="!userName.valid ||!surname.valid ||!email.valid ||!password.valid||!name.valid">
         <mat-icon>save</mat-icon>Save
     </button>
-    <button mat-raised-button color="warn"class="cancel" (click)="dismiss()">
+    <button mat-raised-button color="warn" class="cancel" (click)="dismiss()">
         <mat-icon>cancel</mat-icon>Cancel
     </button>
 </mat-dialog-actions>
