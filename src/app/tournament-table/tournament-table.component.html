@@ -3,11 +3,6 @@
 
 <div class="mat-elevation-z8 tournament-table">
 
-  <mat-form-field>
-    <mat-label>Search</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Search">
-  </mat-form-field>
-
   <button mat-raised-button color="accent" (click)="openAddTournamentDialog()">NewTournament</button>
 
   <table [dataSource]="dataSource" mat-table class="full-width-table" matSort>
@@ -48,8 +43,5 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" [pageSize]="50"
-    [pageSizeOptions]="[1, 50, 100, 250]">
-  </mat-paginator>
 </div>
 

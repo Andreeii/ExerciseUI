@@ -43,11 +43,6 @@ export class TournamentTableComponent implements OnInit {
         this.dataSource.sort = this.sort;
       })
   }
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
   openAddTournamentDialog(): void {
     let dialogRef = this.dialog.open(AddTournamentDialogComponent, {
       width: '600px',
