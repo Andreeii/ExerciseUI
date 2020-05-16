@@ -8,6 +8,11 @@
 
     <table mat-table [dataSource]="pagedPlayers?.items" class="full-width-table" matSort matSortActive="" matSortDirection="asc">
 
+        <ng-container matColumnDef="profileImage">
+            <th mat-header-cell *matHeaderCellDef >Profile Image</th>
+            <td mat-cell *matCellDef="let player"><img class="imgStyle"[src]=  "imgUrl+player.profileImage"></td>
+        </ng-container>
+
         <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
             <td mat-cell *matCellDef="let player"> {{player.id}} </td>

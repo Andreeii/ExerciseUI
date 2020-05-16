@@ -7,6 +7,7 @@ export interface IPlayer{
     userName:string;
     email:string;
     registrationDate:number;
+    profileImage:string;
 }
 
 export interface PlayerDto{

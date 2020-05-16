@@ -27,8 +27,10 @@ export class PlayersTableComponent implements AfterViewInit {
   playerTable: IPlayer[];
   pagedPlayers: PagedResult<IPlayer>;
 
+  imgUrl:string = "http://localhost:60907/";
 
   tableColumns: TableColumn[] = [
+    { name: 'profileImage', index:'profileImage',displayName:'profileImage'},
     { name: 'id', index: 'id', displayName: 'Id' },
     { name: 'name', index: 'name', displayName: 'Price' },
     { name: 'surname', index: 'surname', displayName: 'Surname' },
@@ -42,7 +44,6 @@ export class PlayersTableComponent implements AfterViewInit {
   searchInput = new FormControl('');
   filterForm: FormGroup;
   requestFilters: RequestFilters;
-
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
@@ -61,16 +62,16 @@ export class PlayersTableComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.loadBooksFromApi();
+    this.loadPlayersFromApi();
 
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
     merge(this.sort.sortChange, this.paginator.page).subscribe(() => {
-      this.loadBooksFromApi();
+      this.loadPlayersFromApi();
     });
   }
 
-  loadBooksFromApi() {
+  loadPlayersFromApi() {
     const paginatedRequest = new PaginatedRequest(this.paginator, this.sort, this.requestFilters);
     this.playerService.getPlayersPaged(paginatedRequest)
       .subscribe((pagedPlayers: PagedResult<IPlayer>) => {
@@ -82,17 +83,17 @@ export class PlayersTableComponent implements AfterViewInit {
 
   applySearch() {
     this.createFiltersFromSearchInput();
-    this.loadBooksFromApi();
+    this.loadPlayersFromApi();
   }
 
   resetGrid() {
     this.requestFilters = { filters: [], logicalOperator: FilterLogicalOperators.And };
-    this.loadBooksFromApi();
+    this.loadPlayersFromApi();
   }
 
   filterBooksFromForm() {
     this.createFiltersFromForm();
-    this.loadBooksFromApi();
+    this.loadPlayersFromApi();
   }
   private createFiltersFromForm() {
     if (this.filterForm.value) {
@@ -145,7 +146,7 @@ export class PlayersTableComponent implements AfterViewInit {
   openDeletePlayerDialog(id: number): void {
     this.dataService.setData(id);
     let dialogRef = this.dialog.open(DeletePlayerDialogComponent);
-    dialogRef.afterClosed().subscribe(() => { this.loadBooksFromApi() });
+    dialogRef.afterClosed().subscribe(() => { this.loadPlayersFromApi() });
   }
 
 
