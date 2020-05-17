@@ -37,10 +37,11 @@ export class EditTournamentComponent implements OnInit {
     this.tournament = tour;
     this.newGameList = this.prepareGameList(this.tournament.game);
     const firstRow = this.newGameList[0];
-    const player1 = await this.playerService.getPlayerById(firstRow[0].playerGame[0].playerId).toPromise();
-    const firstPlayer = { id: firstRow[0].playerGame[0].playerId, userName: player1.userName }
+    const firstPlayerId = firstRow[0].playerGame[0].playerId;
+    const player1 = await this.playerService.getPlayerById(firstPlayerId).toPromise();
+    const firstPlayer = { id: firstPlayerId, userName: player1.userName }
     this.players = await Promise.all([firstPlayer, ...this.newGameList[0].map(async (game) => {
-      const secondPlayerId = game.playerGame[1].playerId;
+      const secondPlayerId = game.playerGame.filter(el => el.playerId !== firstPlayerId)[0].playerId;
       const player = await this.playerService.getPlayerById(secondPlayerId).toPromise();
       return { id: secondPlayerId, userName: player.userName };
     })]);
@@ -95,9 +96,11 @@ export class EditTournamentComponent implements OnInit {
   populateTable(table) {
     for (let i = 0; i < this.players.length; i++) {
       const listForRow = this.newGameList[i];
+      const rowPlayerId = this.players[i].id; 
       for (let j = i + 1; j < this.players.length; j++) {
         const game = listForRow[j - i - 1];
-        const [playerGame1, playerGame2] = game.playerGame
+        const playerGame1 = game.playerGame.find(el => el.playerId === rowPlayerId);
+        const playerGame2 = game.playerGame.find(el => el.playerId !== rowPlayerId);
         const obj = {
           row: i,
           column: j,
