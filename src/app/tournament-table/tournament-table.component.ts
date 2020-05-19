@@ -22,9 +22,6 @@ export class TournamentTableComponent implements OnInit {
   tournamentItemTable: ITournament[];
 
 
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-
 
   constructor(private router: Router, private dataService: DataService, private dialog: MatDialog, private torunamentService: TournamentTableService) { }
 
@@ -39,8 +36,6 @@ export class TournamentTableComponent implements OnInit {
       .subscribe(t => {
         this.tournamentItemTable = t;
         this.dataSource = new MatTableDataSource(t);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
       })
   }
   openAddTournamentDialog(): void {

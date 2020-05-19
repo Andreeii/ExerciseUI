@@ -42,8 +42,10 @@ export class AddTournamentComponent implements OnInit {
 
   saveTournament() {
     const tournament = this.createTournamentDto();
+    console.log("fromUI",tournament);
+    
     this.postTournamentService.postTournament(tournament).subscribe(x => {
-      console.log(x);
+      console.log("fromDb",x);
     });
     this.routeToTournamentTablePage();
   }
@@ -56,7 +58,7 @@ export class AddTournamentComponent implements OnInit {
         const player1 = this.scoreTable[i][j];
         const player2 = this.scoreTable[j][i];
         const Game: GameDto = {
-          playerGame: [
+          playerGames: [
             {
               playerId: player1.playerIdByRow,
               isWinner: !!player1.checked
@@ -72,7 +74,7 @@ export class AddTournamentComponent implements OnInit {
     }
     const tournament = {
       name: this.tournamentName,
-      game: Games
+      games: Games
     }
     return tournament;
   }

@@ -1,14 +1,14 @@
 <h1>Tournament Table</h1>
 
+<div>
+  <button mat-raised-button color="accent" (click)="openAddTournamentDialog()">NewTournament</button>
+</div>
 
 <div class="mat-elevation-z8 tournament-table">
-
-  <button mat-raised-button color="accent" (click)="openAddTournamentDialog()">NewTournament</button>
-
-  <table [dataSource]="dataSource" mat-table class="full-width-table" matSort>
+  <table [dataSource]="dataSource" mat-table class="full-width-table">
     <!-- Id Column -->
     <ng-container matColumnDef="id" class ="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>TournamentId</th>
+      <th mat-header-cell *matHeaderCellDef >TournamentId</th>
       <td class="id" mat-cell *matCellDef="let tournament">{{tournament.tournamentId}}</td>
     </ng-container>
 

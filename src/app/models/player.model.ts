@@ -32,5 +32,5 @@ export interface ChangePassword{
 export interface  PlayerForDelete{
     id:number;
     userName:string;
-    playerGame:PlayerGameDto[];
+    playerGames:PlayerGameDto[];
 }

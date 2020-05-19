@@ -9,24 +9,23 @@ export interface ITournament {
 export interface WinnedTournaments {
     tournamentId: number;
     tournamentName: string;
-    playerName: string;
-    numberOfWins: number;
+    wins: number;
 }
 
 export interface TournamentDto {
     id?: number;
     name: string;
-    game: GameDto[];
+    games: GameDto[];
 
 }
 export interface GameDto {
     id?: number;
     tournamentId?: number;
-    playerGame: PlayerGameDto[];
+    playerGames: PlayerGameDto[];
 }
 
 export interface PlayerGameDto {
-    id?:number;
+    id?: number;
     playerId: number;
     gameId?: number;
     isWinner: boolean;

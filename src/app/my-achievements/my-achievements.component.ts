@@ -19,7 +19,7 @@ export class MyAchievementsComponent implements OnInit {
   ngOnInit(): void {
     this.getTournamentList();
   }
-  displayedColumns: string[] = ['id', 'tournamentName', 'playerName', 'Nr.WinnedGames'];
+  displayedColumns: string[] = ['id', 'tournamentName','winnedGames'];
 
   getTournamentList() {
     this.torunamentService.getWinnedTournaments()

@@ -35,13 +35,13 @@ export class EditTournamentComponent implements OnInit {
   async onTour(tour) {
 
     this.tournament = tour;
-    this.newGameList = this.prepareGameList(this.tournament.game);
+    this.newGameList = this.prepareGameList(this.tournament.games);
     const firstRow = this.newGameList[0];
-    const firstPlayerId = firstRow[0].playerGame[0].playerId;
+    const firstPlayerId = firstRow[0].playerGames[0].playerId;
     const player1 = await this.playerService.getPlayerById(firstPlayerId).toPromise();
     const firstPlayer = { id: firstPlayerId, userName: player1.userName }
-    this.players = await Promise.all([firstPlayer, ...this.newGameList[0].map(async (game) => {
-      const secondPlayerId = game.playerGame.filter(el => el.playerId !== firstPlayerId)[0].playerId;
+    this.players = await Promise.all([firstPlayer, ...this.newGameList[0].map(async (games) => {
+      const secondPlayerId = games.playerGames.filter(el => el.playerId !== firstPlayerId)[0].playerId;
       const player = await this.playerService.getPlayerById(secondPlayerId).toPromise();
       return { id: secondPlayerId, userName: player.userName };
     })]);
@@ -99,8 +99,8 @@ export class EditTournamentComponent implements OnInit {
       const rowPlayerId = this.players[i].id; 
       for (let j = i + 1; j < this.players.length; j++) {
         const game = listForRow[j - i - 1];
-        const playerGame1 = game.playerGame.find(el => el.playerId === rowPlayerId);
-        const playerGame2 = game.playerGame.find(el => el.playerId !== rowPlayerId);
+        const playerGame1 = game.playerGames.find(el => el.playerId === rowPlayerId);
+        const playerGame2 = game.playerGames.find(el => el.playerId !== rowPlayerId);
         const obj = {
           row: i,
           column: j,
@@ -132,7 +132,7 @@ export class EditTournamentComponent implements OnInit {
         const player1 = this.scoreTable[i][j];
         const player2 = this.scoreTable[j][i];
         const Game: GameDto = {
-          playerGame: [
+          playerGames: [
             {
               playerId: player1.playerIdByRow,
               isWinner: !!player1.checked,
@@ -149,11 +149,11 @@ export class EditTournamentComponent implements OnInit {
     }
 
     const GamesWithId = Games.map((game, index) => {
-      game.id = this.tournament.game[index].id
-      game.playerGame = game.playerGame.map((playerGame, idx) => {
+      game.id = this.tournament.games[index].id
+      game.playerGames = game.playerGames.map((playerGame, idx) => {
         // console.log(index, this.tournament.game[index]);
         playerGame.gameId = game.id;
-        playerGame.id = this.tournament.game[index].playerGame[idx].id;
+        playerGame.id = this.tournament.games[index].playerGames[idx].id;
         return playerGame
       })
       return game;
@@ -161,7 +161,7 @@ export class EditTournamentComponent implements OnInit {
 
     const tournament = {
       name: this.tournament.name,
-      game: GamesWithId,
+      games: GamesWithId,
       id: this.tournament.id
     }
     return tournament;

@@ -12,14 +12,9 @@
         <td mat-cell *matCellDef="let tournament"> {{tournament.tournamentName}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="playerName">
-        <th mat-header-cell *matHeaderCellDef>Name</th>
-        <td mat-cell *matCellDef="let tournament"> {{tournament.playerName}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="Nr.WinnedGames">
-        <th mat-header-cell *matHeaderCellDef>NrOfMyWinnedGames</th>
-        <td mat-cell *matCellDef="let tournament"> {{tournament.numberOfWins}} </td>
+    <ng-container matColumnDef="winnedGames">
+        <th mat-header-cell *matHeaderCellDef>Winned Games</th>
+        <td mat-cell *matCellDef="let tournament"> {{tournament.wins}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
