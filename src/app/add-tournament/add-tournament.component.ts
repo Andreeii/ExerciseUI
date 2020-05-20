@@ -47,8 +47,6 @@ export class AddTournamentComponent implements OnInit {
     console.log("fromUI", tournament);
     this.postTournamentService.postTournament(tournament).subscribe(x => {
       console.log("fromDb", x);
-    });
-    this.router.navigateByUrl('/TournamentTableComponent', { skipLocationChange: true }).then(() => {
       this.router.navigate(['tournament-table']);
     });
   }

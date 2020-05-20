@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AccountService } from '../services/account.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RegisterDialogComponent } from './register-dialog/register-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'login',
@@ -18,14 +19,15 @@ export class LoginComponent implements OnInit {
   private returnUrl: string;
 
   public userLoginForm: FormGroup;
+  public errorText:string;
 
   constructor(private accountService: AccountService,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackBar:MatSnackBar
   ) { }
-
   ngOnInit() {
     this.userLoginForm = this.formBuilder.group({
       userName: ['', [Validators.required]],
@@ -44,6 +46,14 @@ export class LoginComponent implements OnInit {
       .subscribe((bearerToken: BearerToken) => {
         localStorage.setItem('accessToken', bearerToken.accessToken);
         this.router.navigate([this.returnUrl]);
+      },error=>{
+        this.errorText =error;
+        console.log(error);
+        this.snackBar.open("Invalid Credentials",'',{
+          duration:3000,
+          verticalPosition:'top'
+        })
+        
       });
 
   }

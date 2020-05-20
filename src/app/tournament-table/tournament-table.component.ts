@@ -32,11 +32,11 @@ export class TournamentTableComponent implements OnInit {
   async getTournamentList() {
     this.dataSource = new MatTableDataSource();
     
-    await this.torunamentService.getTournamentList()
+     this.torunamentService.getTournamentList()
       .subscribe(t => {
         this.dataSource.data = t;
       });
-    await this.torunamentService.getProgress()
+     this.torunamentService.getProgress()
     .subscribe(res => {
       this.dataSource.data.forEach((item, index) => {
         item['progress'] = res[index];

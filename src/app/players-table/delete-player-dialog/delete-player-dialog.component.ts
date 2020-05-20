@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/shared/data.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { TournamentPlayer } from 'src/app/services/player.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-delete-player-dialog',
@@ -10,8 +11,9 @@ import { TournamentPlayer } from 'src/app/services/player.service';
 })
 export class DeletePlayerDialogComponent implements OnInit {
 
-  id:number;
-  constructor(private dataService: DataService, private dialogRef: MatDialogRef<DeletePlayerDialogComponent>,private playerService:TournamentPlayer) { }
+  id: number;
+  errorText: any;
+  constructor(private snackBar: MatSnackBar, private dataService: DataService, private dialogRef: MatDialogRef<DeletePlayerDialogComponent>, private playerService: TournamentPlayer) { }
 
   ngOnInit(): void {
   }
@@ -22,9 +24,22 @@ export class DeletePlayerDialogComponent implements OnInit {
 
   deletePlayer() {
     this.id = this.dataService.getData();
-    console.log(this.id);
-    this.playerService.deletePlayer(this.id).subscribe();
-    this.dismiss();
+    this.playerService.deletePlayer(this.id).subscribe(
+      p => {
+        this.snackBar.open("Player Deleted Succeseful", '', {
+          duration: 3000,
+          verticalPosition: 'top'
+        })
+      },
+      error => {
+        this.errorText = error;
+        let finalMessage = this.errorText.error;
+        this.snackBar.open(finalMessage, '', {
+          duration: 3000,
+          verticalPosition: 'top'
+        })
+      });
+    this.dialogRef.close(null);
   }
 
 }

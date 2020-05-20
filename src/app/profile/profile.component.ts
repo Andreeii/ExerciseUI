@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { TournamentPlayer } from '../services/player.service';
 import { PlayerDto } from '../models/player.model';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { error } from '@angular/compiler/src/util';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -13,17 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ProfileComponent implements OnInit {
 
-  // name: string;
-  // surName: string;
-  // email: string;
-  // username: string;
-
-  // name = new FormControl('',[Validators.required,Validators.maxLength(8)]);
-  // surname = new FormControl('');
-  // email = new FormControl('');
-  // userName = new FormControl('');
-
   form: FormGroup;
+  errorText: any;
   constructor(private router: Router, private playerService: TournamentPlayer, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -34,7 +24,6 @@ export class ProfileComponent implements OnInit {
 
   getPlayer() {
     this.playerService.getPlayer().subscribe(p => {
-
       this.form.patchValue({ ...p });
     })
   }
@@ -43,7 +32,7 @@ export class ProfileComponent implements OnInit {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.maxLength(8)]),
       surname: new FormControl(''),
-      email: new FormControl('',[Validators.required,Validators.email]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       userName: new FormControl('')
     });
   }
@@ -56,8 +45,23 @@ export class ProfileComponent implements OnInit {
     const player: PlayerDto = {
       ...this.form.getRawValue()
     }
-    this.playerService.updatePlayer(player).subscribe(p => { console.log(p) });
+    this.playerService.updatePlayer(player).subscribe(
+      p => {
+        this.errorText = p;
+        console.log(p);
+        let finalMessage = "";
+        if (this.errorText.errors.length != 0) {
+          finalMessage = this.errorText.errors[0].description;
+        } else {
+          finalMessage = "Success"
+        }
+        this.snackBar.open(finalMessage, '', {
+          duration: 3000,
+          verticalPosition: 'top'
+        })
+      });
   }
+
 
   getErrorMessage() {
     if (this.form.get('email').hasError('required')) {

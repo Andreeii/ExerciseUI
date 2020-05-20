@@ -22,4 +22,5 @@ export class AccountService {
   login(playerForLoginDto: PlayerForLogin): Observable<BearerToken> {
     return this.http.post<BearerToken>(this.baseUrl + 'login/', playerForLoginDto);
   }
+
 }
