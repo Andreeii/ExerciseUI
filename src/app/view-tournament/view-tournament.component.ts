@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/shared/data.service';
 import { TournamentTableService } from '../services/tournamnet-table.service';
-import { TournamentDto, GameDto } from '../models/tournament-table.model';
+import { TournamentDto } from '../models/tournament-table.model';
 import { Router } from '@angular/router';
 import { TournamentPlayer } from '../services/player.service';
 
@@ -13,11 +13,11 @@ type TableCell = {
 };
 
 @Component({
-  selector: 'edit-tournament',
-  templateUrl: './edit-tournament.component.html',
-  styleUrls: ['./edit-tournament.component.css']
+  selector: 'view-tournament',
+  templateUrl: './view-tournament.component.html',
+  styleUrls: ['./view-tournament.component.css']
 })
-export class EditTournamentComponent implements OnInit {
+export class ViewTournamentComponent implements OnInit {
 
   id: number;
   players: any[] = [];
@@ -48,16 +48,6 @@ export class EditTournamentComponent implements OnInit {
 
     this.scoreTable = this.generateInitialTable();
     this.populateTable(this.scoreTable);
-  }
-
-
-  playerUpdated(cell: TableCell) {
-    if (cell.checked) {
-      this.scoreTable[cell.column][cell.row].checked = false;
-    }
-    const arrayOfBooleans = this.scoreTable.map(x => x.map(y => y.checked));
-    console.log('arrayOfBooleans', arrayOfBooleans);
-    console.log('this.scoreTable', this.scoreTable);
   }
 
   prepareGameList(games) {
@@ -120,60 +110,6 @@ export class EditTournamentComponent implements OnInit {
         table[j][i] = obj2;
       }
     }
-  }
-
-
-
-  createTournamentDto() {
-    const Games: GameDto[] = [];
-
-    for (let i = 0; i < this.scoreTable.length; i++) {
-      for (let j = i + 1; j < this.scoreTable.length; j++) {
-        const player1 = this.scoreTable[i][j];
-        const player2 = this.scoreTable[j][i];
-        const Game: GameDto = {
-          playerGames: [
-            {
-              playerId: player1.playerIdByRow,
-              isWinner: !!player1.checked,
-            },
-            {
-              playerId: player2.playerIdByRow,
-              isWinner: !!player2.checked,
-            }
-          ],
-          tournamentId: this.tournament.id,
-        }
-        Games.push(Game);
-      }
-    }
-
-    const GamesWithId = Games.map((game, index) => {
-      game.id = this.tournament.games[index].id
-      game.playerGames = game.playerGames.map((playerGame, idx) => {
-        // console.log(index, this.tournament.game[index]);
-        playerGame.gameId = game.id;
-        playerGame.id = this.tournament.games[index].playerGames[idx].id;
-        return playerGame
-      })
-      return game;
-    })
-
-    const tournament = {
-      name: this.tournament.name,
-      games: GamesWithId,
-      id: this.tournament.id
-    }
-    return tournament;
-  }
-
-  async saveTournament() {
-    const tournament = this.createTournamentDto();
-    console.log({ tournament })
-    this.editTournamentService.updateTournament(tournament).subscribe(x => {
-      console.log(x);
-    });
-    await this.router.navigate(['tournament-table']);
   }
 
   routeToTournamentTablePage() {

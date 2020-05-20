@@ -7,8 +7,8 @@
 <div class="mat-elevation-z8 tournament-table">
   <table [dataSource]="dataSource" mat-table class="full-width-table">
     <!-- Id Column -->
-    <ng-container matColumnDef="id" class ="id">
-      <th mat-header-cell *matHeaderCellDef >TournamentId</th>
+    <ng-container matColumnDef="id" class="id">
+      <th mat-header-cell *matHeaderCellDef>TournamentId</th>
       <td class="id" mat-cell *matCellDef="let tournament">{{tournament.tournamentId}}</td>
     </ng-container>
 
@@ -33,15 +33,26 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let row">
-        <button mat-mini-fab color="accent"><i class="fa fa-eye"></i></button>
-        <button mat-mini-fab color="primary"(click) ="editTournament(row.tournamentId)" *ngIf = "roleMatch('admin')"><i class="fa fa-pencil"></i></button>
-        <button mat-mini-fab color="warn"(click) = openDeleteTournamentDialog(row.tournamentId) *ngIf = "roleMatch('admin')"><i class="fa fa-trash"></i></button>
+        <button mat-mini-fab color="accent" (click)="viewTournament(row.tournamentId)">
+          <i class="fa fa-eye"></i>
+        </button>
+        <button mat-mini-fab color="primary" (click)="editTournament(row.tournamentId)" *ngIf="roleMatch('admin')">
+          <i class="fa fa-pencil"></i></button>
+        <button mat-mini-fab color="warn" (click)=openDeleteTournamentDialog(row.tournamentId) *ngIf="roleMatch('admin')">
+          <i class="fa fa-trash"></i></button>
       </td>
     </ng-container>
 
+    <ng-container matColumnDef="progress">        
+        <th mat-header-cell *matHeaderCellDef>ProgressBar</th>
+        <td  mat-cell *matCellDef="let row">
+          <mat-progress-bar mode="determinate" [value]="row.progress"></mat-progress-bar>
+        </td>
+    </ng-container>
+    
+    
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
+  
 </div>
-

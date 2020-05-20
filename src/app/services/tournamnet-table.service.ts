@@ -39,4 +39,8 @@ export class TournamentTableService {
         return this.http.put(this.baseUrl + 'api/tournament', tournament)
     }
 
+    getProgress(): Observable<number[]> {
+        return this.http.get<number[]>(this.baseUrl + 'api/tournament/progress')
+    }
+
 }

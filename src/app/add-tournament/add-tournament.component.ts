@@ -6,6 +6,7 @@ import { TournamentTableService } from '../services/tournamnet-table.service';
 import { Router } from '@angular/router';
 import { GameDto } from '../models/tournament-table.model';
 
+
 type TableCell = {
   row: number;
   column: number;
@@ -28,6 +29,7 @@ export class AddTournamentComponent implements OnInit {
 
   }
 
+
   players: IPlayer[] = [];
   scoreTable: TableCell[][];
   tournamentName: string;
@@ -40,14 +42,15 @@ export class AddTournamentComponent implements OnInit {
     this.scoreTable = this.generateInitialTable();
   }
 
-  saveTournament() {
+  async saveTournament() {
     const tournament = this.createTournamentDto();
-    console.log("fromUI",tournament);
-    
+    console.log("fromUI", tournament);
     this.postTournamentService.postTournament(tournament).subscribe(x => {
-      console.log("fromDb",x);
+      console.log("fromDb", x);
     });
-    this.routeToTournamentTablePage();
+    this.router.navigateByUrl('/TournamentTableComponent', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['tournament-table']);
+    });
   }
 
   createTournamentDto() {

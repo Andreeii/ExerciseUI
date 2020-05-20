@@ -38,6 +38,8 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PlayersTableComponent } from './players-table/players-table.component';
 import { DeletePlayerDialogComponent } from './players-table/delete-player-dialog/delete-player-dialog.component';
+import { MatProgressBarModule} from '@angular/material/progress-bar';
+import { ViewTournamentComponent } from './view-tournament/view-tournament.component';
 
 
 
@@ -58,8 +60,8 @@ import { DeletePlayerDialogComponent } from './players-table/delete-player-dialo
     LoginComponent,
     RegisterDialogComponent,
     PlayersTableComponent,
-    DeletePlayerDialogComponent
-  
+    DeletePlayerDialogComponent,
+    ViewTournamentComponent  
   ],
   imports: [
     BrowserModule,
@@ -81,6 +83,7 @@ import { DeletePlayerDialogComponent } from './players-table/delete-player-dialo
     MatSelectModule,
     MatCheckboxModule,
     FormsModule,
+    MatProgressBarModule,
     ReactiveFormsModule,
     MatSnackBarModule,
     NgMultiSelectDropDownModule.forRoot(),

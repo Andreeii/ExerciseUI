@@ -1,0 +1,46 @@
+.table {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around; */
+  }
+  
+  .cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #708090;
+    width: 20%;
+    height: 50px;
+    margin: 2px;
+  }
+  
+  .player {
+    background-color: #008CBA;
+  }
+  
+  p {
+    text-align: center;
+    color: darkorchid;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 40px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .cancel{
+    width: 100px;
+    margin-left: 20px;
+  }
+  
+  button{
+    margin-top:30px;
+    margin-left: 50px;
+  }

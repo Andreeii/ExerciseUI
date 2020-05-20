@@ -1,0 +1,21 @@
+<p *ngIf="tournament">{{tournament.name}}</p>
+
+<div class="table">
+  <div class="row">
+    <div class="cell"></div>
+    <div *ngFor="let player of players" class="cell player">
+      {{player.userName}}
+    </div>
+  </div>
+  <div *ngFor="let row of scoreTable; index as i;" class="row">
+    <div class="cell player">
+      {{players[i].userName}}
+    </div>
+
+    <div  *ngFor="let cell of row; index as j" class="cell">
+      <mat-checkbox disabled="true" type="checkbox" *ngIf="cell.checked !== 'x'" [(ngModel)]="cell.checked"></mat-checkbox>
+    </div>
+  </div>
+</div>
+
+<button mat-raised-button class="cancel"color="warn" (click)="routeToTournamentTablePage()"><i class="fa fa-backward"></i> Back</button>

@@ -1,5 +1,5 @@
 export interface ITournament {
-    playerId: number;
+    //playerId: number;
     winnerName: string;
     numberOfWins: string;
     tournamentId: number;
