@@ -4,6 +4,7 @@ import { LoginComponent } from '../login.component';
 import { TournamentPlayer } from 'src/app/services/player.service';
 import { PlayerDto } from 'src/app/models/player.model';
 import { FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register-dialog',
@@ -24,8 +25,8 @@ export class RegisterDialogComponent implements OnInit {
   selectedRole: string;
   rolesList = [];
 
-  errorMessage: string;
-  constructor(private dialogRef: MatDialogRef<LoginComponent>, private playerService: TournamentPlayer) { }
+  errorText: any;
+  constructor(private snackBar: MatSnackBar, private dialogRef: MatDialogRef<LoginComponent>, private playerService: TournamentPlayer) { }
 
   ngOnInit(): void {
     this.playerService.getRoles().subscribe(roles => this.rolesList = roles);
@@ -52,7 +53,7 @@ export class RegisterDialogComponent implements OnInit {
       email: this.email.value,
       password: this.password.value,
       role: this.selectedRole,
-      profileImage:this.fileToUpload.name
+      profileImage: this.fileToUpload.name
     }
     return player;
   }
@@ -61,11 +62,29 @@ export class RegisterDialogComponent implements OnInit {
 
   savePlayer() {
     const player = this.createPlayerDto();
-    this.playerService.postPlayer(player).subscribe(x => {
-      console.log(x);
-    });
-    this.playerService.uploadImage(this.fileToUpload).subscribe(i=>console.log(i));
-    this.dialogRef.close(null);
+    this.playerService.postPlayer(player).subscribe(
+      p => {
+        this.errorText = p;
+        let finalMessage = "";
+        if (this.errorText.errors.length != 0) {
+          finalMessage = this.errorText.errors[0].description;
+        } else {
+          finalMessage = "Registration Succes"
+          this.dialogRef.close(null);
+        }
+        this.snackBar.open(finalMessage, '', {
+          duration: 3000,
+          verticalPosition: 'top'
+        })
+      },
+      error => {
+        this.errorText = error;
+        this.snackBar.open("Incorect Password Input", '', {
+          duration: 3000,
+          verticalPosition: 'top'
+        })
+      });
+    this.playerService.uploadImage(this.fileToUpload).subscribe();
   }
   getErrorMessage() {
     if (this.password.hasError('required')) {

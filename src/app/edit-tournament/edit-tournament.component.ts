@@ -172,8 +172,8 @@ export class EditTournamentComponent implements OnInit {
     console.log({ tournament })
     this.editTournamentService.updateTournament(tournament).subscribe(x => {
       console.log(x);
+      this.router.navigate(['tournament-table']);
     });
-    await this.router.navigate(['tournament-table']);
   }
 
   routeToTournamentTablePage() {
