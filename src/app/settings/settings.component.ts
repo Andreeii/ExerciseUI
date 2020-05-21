@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ChangePassword } from '../models/player.model';
 import { TournamentPlayer } from '../services/player.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'settings',
@@ -15,8 +16,9 @@ export class SettingsComponent implements OnInit {
   
   curentPassword = new FormControl('');
   newPassword = new FormControl('');
+  errorText:any;
 
-  constructor(private router:Router, private playerService: TournamentPlayer) { }
+  constructor(private snackBar:MatSnackBar,private router:Router, private playerService: TournamentPlayer) { }
 
   ngOnInit(): void {
   }
@@ -30,7 +32,30 @@ export class SettingsComponent implements OnInit {
       curentPassword :this.curentPassword.value,
       newPassword : this.newPassword.value
     }
-    this.playerService.changePassword(passwordDto).subscribe(pass=>console.log(pass));
+    this.playerService.changePassword(passwordDto).subscribe(
+      p => {
+        console.log(p);
+        
+        this.errorText = p;
+        let finalMessage = "";
+        if (this.errorText.errors.length != 0) {
+          finalMessage = this.errorText.errors[0].description;
+        } else {
+          finalMessage = "Password Changed Successefully"
+        }
+        this.snackBar.open(finalMessage, '', {
+          duration: 3000,
+          verticalPosition: 'top'
+        })
+      },
+      error => {
+        this.errorText = error;
+        let finalMessage = this.errorText.error;
+        this.snackBar.open("Incorect Input of Curent Password", '', {
+          duration: 3000,
+          verticalPosition: 'top'
+        })
+      });
   }
 
 }

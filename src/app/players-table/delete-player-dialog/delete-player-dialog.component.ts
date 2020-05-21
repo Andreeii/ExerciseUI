@@ -26,7 +26,7 @@ export class DeletePlayerDialogComponent implements OnInit {
     this.id = this.dataService.getData();
     this.playerService.deletePlayer(this.id).subscribe(
       p => {
-        this.snackBar.open("Player Deleted Succeseful", '', {
+        this.snackBar.open("Player Deleted Successefully", '', {
           duration: 3000,
           verticalPosition: 'top'
         })

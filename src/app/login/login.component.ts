@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
       },error=>{
         this.errorText =error;
         console.log(error);
-        this.snackBar.open("Invalid Credentials",'',{
+        this.snackBar.open("Invalid Login or Password",'',{
           duration:3000,
           verticalPosition:'top'
         })
