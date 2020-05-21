@@ -26,6 +26,11 @@
       <!-- <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error> -->
     </mat-form-field>
 
+    <div class="imgPosition">
+      <img [src]="imgUrl" class="imgStyle">
+      <input type="file" #Image accept="image/*" (change)="handleFileInput($event.target.files)" required>
+    </div>
+
     <mat-dialog-actions>
       <button mat-raised-button color="primary" type="submit"
         [disabled]="!form.get('email').valid || !form.get('name').valid || !form.get('surname').valid || !form.get('userName').valid">

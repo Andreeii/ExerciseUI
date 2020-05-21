@@ -41,3 +41,16 @@ button{
 .cancel{
   margin-left: 60%;
 }
+
+.mat-input{
+  background-color: #008CBA;
+}
+
+.imgStyle {
+  width: 100px;
+  height: 100px;
+}
+
+.imgPosition{
+  margin-bottom: 10px;
+}

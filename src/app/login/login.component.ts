@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   public userLoginForm: FormGroup;
   public errorText:string;
 
+
   constructor(private accountService: AccountService,
     private router: Router,
     private route: ActivatedRoute,

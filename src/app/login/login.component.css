@@ -10,6 +10,7 @@ Html, body {
     padding: 0px;
     position: center;
     top: 200px;
+    /* background-image: url("../../assets/images/chess-font-2-big.png");    */
 }
 
 .grandParentContaniner {
@@ -52,3 +53,7 @@ img{
     width: 80px;
     margin-left: 60%;
 }
+
+.clouds {
+    background-image: url("../../assets/images/chess-font-2-big.png");
+ }

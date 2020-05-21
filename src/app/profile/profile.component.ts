@@ -14,6 +14,10 @@ export class ProfileComponent implements OnInit {
 
   form: FormGroup;
   errorText: any;
+  imgUrl: string;
+  fileToUpload: File = null;
+
+  profileImage: string;
   constructor(private router: Router, private playerService: TournamentPlayer, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -25,6 +29,7 @@ export class ProfileComponent implements OnInit {
   getPlayer() {
     this.playerService.getPlayer().subscribe(p => {
       this.form.patchValue({ ...p });
+      this.imgUrl = "http://localhost:60907/" + p.profileImage;
     })
   }
 
@@ -42,8 +47,16 @@ export class ProfileComponent implements OnInit {
   }
 
   save() {
-    const player: PlayerDto = {
-      ...this.form.getRawValue()
+    let player:PlayerDto;
+    if (this.fileToUpload != null) {
+      player = {
+        ...this.form.getRawValue(),
+        profileImage: this.fileToUpload.name
+      }
+    }else{
+      player  = {
+        ...this.form.getRawValue()
+      }
     }
     this.playerService.updatePlayer(player).subscribe(
       p => {
@@ -60,6 +73,17 @@ export class ProfileComponent implements OnInit {
           verticalPosition: 'top'
         })
       });
+    this.playerService.uploadImage(this.fileToUpload).subscribe();
+    location.reload();
+  }
+
+  handleFileInput(file: FileList) {
+    this.fileToUpload = file.item(0);
+    var reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.imgUrl = event.target.result;
+    }
+    reader.readAsDataURL(this.fileToUpload);
   }
 
 
