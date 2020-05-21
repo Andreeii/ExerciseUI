@@ -31,17 +31,17 @@ export class TournamentTableComponent implements OnInit {
 
   async getTournamentList() {
     this.dataSource = new MatTableDataSource();
-    
-     this.torunamentService.getTournamentList()
+
+    this.torunamentService.getTournamentList()
       .subscribe(t => {
         this.dataSource.data = t;
+        this.torunamentService.getProgress()
+          .subscribe(res => {
+            this.dataSource.data.forEach((item, index) => {
+              item['progress'] = res[index];
+            });
+          });
       });
-     this.torunamentService.getProgress()
-    .subscribe(res => {
-      this.dataSource.data.forEach((item, index) => {
-        item['progress'] = res[index];
-      });
-    });
 
   }
 
@@ -58,7 +58,7 @@ export class TournamentTableComponent implements OnInit {
   openDeleteTournamentDialog(id: number): void {
     this.dataService.setData(id);
     let dialogRef = this.dialog.open(DeleteDialogComponent);
-    dialogRef.afterClosed().subscribe(() => {this.getTournamentList()});
+    dialogRef.afterClosed().subscribe(() => { this.getTournamentList() });
   }
 
 
