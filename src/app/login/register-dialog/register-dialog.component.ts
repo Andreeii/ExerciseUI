@@ -58,8 +58,6 @@ export class RegisterDialogComponent implements OnInit {
     return player;
   }
 
-
-
   savePlayer() {
     const player = this.createPlayerDto();
     this.playerService.postPlayer(player).subscribe(

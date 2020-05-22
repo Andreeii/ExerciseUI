@@ -27,7 +27,7 @@ export class PlayersTableComponent implements AfterViewInit {
   playerTable: IPlayer[];
   pagedPlayers: PagedResult<IPlayer>;
 
-  imgUrl:string = "http://localhost:60907/";
+  imgUrl:string = "http://localhost:60907/ProfileImage/";
 
   tableColumns: TableColumn[] = [
     { name: 'profileImage', index:'profileImage',displayName:'profileImage'},

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { TournamentPlayer } from '../services/player.service';
 import { PlayerDto } from '../models/player.model';
@@ -12,10 +12,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ProfileComponent implements OnInit {
 
+  @ViewChild('Image', { static: true }) fileInput: ElementRef
+
   form: FormGroup;
   errorText: any;
   imgUrl: string;
-  fileToUpload: File = null;
+  fileToUpload: File;
 
   profileImage: string;
   constructor(private router: Router, private playerService: TournamentPlayer, private snackBar: MatSnackBar) { }
@@ -29,7 +31,8 @@ export class ProfileComponent implements OnInit {
   getPlayer() {
     this.playerService.getPlayer().subscribe(p => {
       this.form.patchValue({ ...p });
-      this.imgUrl = "http://localhost:60907/" + p.profileImage;
+      this.imgUrl = "http://localhost:60907/ProfileImage/" + p.profileImage;
+      this.fileToUpload = new File([""], p.profileImage);
     })
   }
 
@@ -47,16 +50,10 @@ export class ProfileComponent implements OnInit {
   }
 
   save() {
-    let player:PlayerDto;
-    if (this.fileToUpload != null) {
-      player = {
-        ...this.form.getRawValue(),
-        profileImage: this.fileToUpload.name
-      }
-    }else{
-      player  = {
-        ...this.form.getRawValue()
-      }
+    let player: PlayerDto;
+    player = {
+      ...this.form.getRawValue(),
+      profileImage: this.fileToUpload.name
     }
     this.playerService.updatePlayer(player).subscribe(
       p => {
@@ -72,9 +69,9 @@ export class ProfileComponent implements OnInit {
           duration: 3000,
           verticalPosition: 'top'
         })
+        this.playerService.uploadImage(this.fileToUpload).subscribe();
+        location.reload();
       });
-    this.playerService.uploadImage(this.fileToUpload).subscribe();
-    location.reload();
   }
 
   handleFileInput(file: FileList) {
