@@ -29,14 +29,13 @@ export class AddTournamentComponent implements OnInit {
 
   }
 
-
   players: IPlayer[] = [];
   scoreTable: TableCell[][];
   tournamentName: string;
 
 
   ngOnInit() {
-    this.players = this.dataService.getData() || [{ "id": 1, "userName": "a1" }, { "id": 2, "userName": "b1" }, { "id": 3, "userName": "c1" }];
+    this.players = this.dataService.getData() ;
     this.tournamentName = this.dataService.getName();
     console.log(this.players);
     this.scoreTable = this.generateInitialTable();
@@ -86,7 +85,7 @@ export class AddTournamentComponent implements OnInit {
     }
     const arrayOfBooleans = this.scoreTable.map(x => x.map(y => y.checked));
     console.log('arrayOfBooleans', arrayOfBooleans);
-    console.log('this.scoreTable', /*JSON.stringify(this.scoreTable, undefined, 2),*/this.scoreTable);
+    console.log('this.scoreTable', this.scoreTable);
   }
 
   generateInitialTable(): TableCell[][] {

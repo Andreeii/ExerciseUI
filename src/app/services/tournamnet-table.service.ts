@@ -32,7 +32,7 @@ export class TournamentTableService {
     }
 
     getWinnedTournaments(): Observable<WinnedTournaments[]> {
-        return this.http.get<WinnedTournaments[]>(this.baseUrl + ('api/tournament/winned'))
+        return this.http.get<WinnedTournaments[]>(this.baseUrl + ('api/tournament/participationTournaments'))
     }
 
     updateTournament(tournament: TournamentDto) {

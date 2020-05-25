@@ -71,7 +71,6 @@ export class EditTournamentComponent implements OnInit {
       result.push(removed.reverse());
       counter++;
     }
-
     return result.reverse();
   }
 
@@ -151,7 +150,6 @@ export class EditTournamentComponent implements OnInit {
     const GamesWithId = Games.map((game, index) => {
       game.id = this.tournament.games[index].id
       game.playerGames = game.playerGames.map((playerGame, idx) => {
-        // console.log(index, this.tournament.game[index]);
         playerGame.gameId = game.id;
         playerGame.id = this.tournament.games[index].playerGames[idx].id;
         return playerGame

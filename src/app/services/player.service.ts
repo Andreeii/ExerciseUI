@@ -28,7 +28,7 @@ export class TournamentPlayer {
     }
 
     getPlayer(): Observable<PlayerDto> {
-        return this.http.get<PlayerDto>(this.baseUrl + 'api/player/byId');
+        return this.http.get<PlayerDto>(this.baseUrl + 'api/player/playerAccount');
     }
 
 
@@ -38,7 +38,7 @@ export class TournamentPlayer {
 
 
     updatePlayer(player: PlayerDto) {
-        return this.http.post(this.baseUrl + 'api/account/edit', player);
+        return this.http.post(this.baseUrl + 'api/account/editPlayer', player);
     }
 
     changePassword(passwordDto: ChangePassword) {
