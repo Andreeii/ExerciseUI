@@ -120,9 +120,7 @@ export class EditTournamentComponent implements OnInit {
       }
     }
   }
-
-
-
+  
   createTournamentDto() {
     const Games: GameDto[] = [];
 
