@@ -18,8 +18,8 @@ export class ProfileComponent implements OnInit {
   errorText: any;
   imgUrl: string;
   fileToUpload: File;
-
   profileImage: string;
+  
   constructor(private router: Router, private playerService: TournamentPlayer, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -31,8 +31,10 @@ export class ProfileComponent implements OnInit {
   getPlayer() {
     this.playerService.getPlayer().subscribe(p => {
       this.form.patchValue({ ...p });
-      this.imgUrl = "http://localhost:60907/ProfileImage/" + p.profileImage;
-      this.fileToUpload = new File([""], p.profileImage);
+      this.imgUrl = p.profileImage;
+      let imgArray = p.profileImage.split("/");
+      let imgName = imgArray[imgArray.length-1]
+      this.fileToUpload = new File([""], imgName);
     })
   }
 

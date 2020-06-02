@@ -23,7 +23,7 @@ export class MainNavComponent {
     this.playerService.getPlayer().subscribe(p => {
       this.name = p.name;
       this.surName = p.surname;
-      this.imgUrl = "http://localhost:60907/ProfileImage/" + p.profileImage;
+      this.imgUrl =  p.profileImage;
     })
   }
 
