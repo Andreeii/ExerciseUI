@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { TournamentTableService } from 'src/app/services/tournamnet-table.service';
 import { DataService } from 'src/app/services/shared/data.service';
@@ -24,8 +24,7 @@ export class DeleteDialogComponent implements OnInit {
   deleteTournament() {
     this.id = this.dataService.getData();
     console.log(this.id);
-    this.tournamentService.deleteTournament(this.id).subscribe();
-    this.dismiss();
+    this.tournamentService.deleteTournament(this.id).subscribe(() => { this.dismiss() });
   }
-  
+
 }

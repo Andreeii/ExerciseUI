@@ -38,7 +38,7 @@
         </button>
         <button mat-mini-fab color="primary" (click)="editTournament(row.tournamentId)" *ngIf="roleMatch('admin')">
           <i class="fa fa-pencil"></i></button>
-        <button mat-mini-fab color="warn" (click)=openDeleteTournamentDialog(row.tournamentId) *ngIf="roleMatch('admin')">
+        <button mat-mini-fab color="warn" (click)=openDeleteTournamentDialog(row.tournamentId) >
           <i class="fa fa-trash"></i></button>
       </td>
     </ng-container>

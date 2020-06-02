@@ -57,3 +57,7 @@ img{
 .clouds {
     background-image: url("../../assets/images/chess-font-2-big.png");
  }
+
+ .googleLogin{
+    margin-left: 40%;
+ }

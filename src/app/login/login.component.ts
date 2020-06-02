@@ -7,6 +7,7 @@ import { AccountService } from '../services/account.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RegisterDialogComponent } from './register-dialog/register-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { GoogleLoginProvider, AuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'login',
@@ -17,17 +18,19 @@ export class LoginComponent implements OnInit {
   hide = true;
 
   private returnUrl: string;
-
+  userData: any[] = [];
   public userLoginForm: FormGroup;
-  public errorText:string;
+  public errorText: string;
 
 
-  constructor(private accountService: AccountService,
+  constructor(
+    private accountService: AccountService,
+    private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
-    private snackBar:MatSnackBar
+    private snackBar: MatSnackBar
   ) { }
   ngOnInit() {
     this.userLoginForm = this.formBuilder.group({
@@ -47,17 +50,28 @@ export class LoginComponent implements OnInit {
       .subscribe((bearerToken: BearerToken) => {
         localStorage.setItem('accessToken', bearerToken.accessToken);
         this.router.navigate([this.returnUrl]);
-      },error=>{
-        this.errorText =error;
+      }, error => {
+        this.errorText = error;
         console.log(error);
-        this.snackBar.open("Invalid Login or Password",'',{
-          duration:3000,
-          verticalPosition:'top'
+        this.snackBar.open("Invalid Login or Password", '', {
+          duration: 3000,
+          verticalPosition: 'top'
         })
-        
-      });
 
+      });
   }
+
+  logInWithGoogle(platform: string): void {
+    platform = GoogleLoginProvider.PROVIDER_ID;
+    this.authService.signIn(platform).then(
+      (response) => {
+        this.userData.push({
+          response
+        });
+      })
+    this.accountService.googleLogin(this.userData[0]).subscribe();
+  }
+
 
   openRegisterDialog() {
     this.dialog.open(RegisterDialogComponent, {

@@ -40,8 +40,19 @@ import { PlayersTableComponent } from './players-table/players-table.component';
 import { DeletePlayerDialogComponent } from './players-table/delete-player-dialog/delete-player-dialog.component';
 import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { ViewTournamentComponent } from './view-tournament/view-tournament.component';
+import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
 
-
+let config = new AuthServiceConfig([
+  {
+     id: GoogleLoginProvider.PROVIDER_ID,
+     provider: new GoogleLoginProvider("435504687783-jmg1heitefdgadc0r9svk92itrgi4581.apps.googleusercontent.com")
+  }
+]);
+export function provideConfig()
+ {
+    return config;
+ }
 
 
 @NgModule({
@@ -93,8 +104,15 @@ import { ViewTournamentComponent } from './view-tournament/view-tournament.compo
         whitelistedDomains: [environment.whitelistedDomainsForSendingToken],
         blacklistedRoutes: [environment.blacklistedRoutes]
    }}),
+   SocialLoginModule.initialize(config)
   ],
-  providers: [AuthGuard],
+  providers: [
+    AuthGuard,
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

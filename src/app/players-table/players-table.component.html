@@ -48,7 +48,7 @@
             <th mat-header-cell *matHeaderCellDef>Actions</th>
             <td mat-cell *matCellDef="let row">
                 <button mat-mini-fab color="warn" disabled *ngIf="roleMatch('user')"><i class="fa fa-trash"></i></button>
-                <button mat-mini-fab color="warn" *ngIf="roleMatch('admin')" (click)="openDeletePlayerDialog(row.id)"><i class="fa fa-trash"></i></button>
+                <button mat-mini-fab color="warn" (click)="openDeletePlayerDialog(row.id)"><i class="fa fa-trash"></i></button>
             </td>
         </ng-container>
 
